@@ -157,8 +157,8 @@ export function Header() {
               {content.hero.primaryCta}
             </a>
             <a
-              href={PROFILE.resumePath}
-              download
+              href={content.resume.href}
+              download={content.resume.downloadName}
               onClick={closeMenu}
               className="inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] px-4 py-2.5 text-sm font-medium text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA]"
             >

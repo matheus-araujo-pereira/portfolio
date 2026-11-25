@@ -63,8 +63,8 @@ export function HeroSection() {
               </a>
 
               <a
-                href={PROFILE.resumePath}
-                download
+                href={content.resume.href}
+                download={content.resume.downloadName}
                 className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] px-5 py-3 text-sm font-semibold text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] sm:w-auto sm:text-base dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6] dark:focus-visible:outline-[#3B82F6]"
               >
                 <Download className="h-4 w-4 shrink-0" aria-hidden="true" />

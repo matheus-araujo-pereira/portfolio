@@ -10,6 +10,8 @@ export const PROFILE = {
   linkedinUrl: "https://www.linkedin.com/in/matheus-araujo-pereira",
   freelasUrl: "https://www.99freelas.com.br/user/matheusaraujopereira",
   resumePath: "/curriculo-matheus-araujo-pereira.pdf",
+  resumePathPt: "/curriculo-matheus-araujo-pereira-pt.pdf",
+  resumePathEn: "/curriculo-matheus-araujo-pereira-en.pdf",
   photoPath: "/matheus-araujo.png",
 } as const;
 
@@ -74,8 +76,14 @@ export interface LanguageItem {
   detail: string;
 }
 
+export interface ResumeDownload {
+  href: string;
+  downloadName: string;
+}
+
 export interface PortfolioContent {
   nav: NavItem[];
+  resume: ResumeDownload;
   header: {
     cta: string;
     openMenu: string;
@@ -157,6 +165,10 @@ export const PORTFOLIO_CONTENT: Record<Locale, PortfolioContent> = {
       { label: "Stack", href: "#stack", id: "stack" },
       { label: "Contato", href: "#contato", id: "contato" },
     ],
+    resume: {
+      href: "/curriculo-matheus-araujo-pereira-pt.pdf",
+      downloadName: "Curriculo-Matheus-Araujo-Pereira-PT.pdf",
+    },
     header: {
       cta: "Contato",
       openMenu: "Abrir menu",
@@ -532,6 +544,10 @@ export const PORTFOLIO_CONTENT: Record<Locale, PortfolioContent> = {
       { label: "Stack", href: "#stack", id: "stack" },
       { label: "Contact", href: "#contato", id: "contato" },
     ],
+    resume: {
+      href: "/curriculo-matheus-araujo-pereira-en.pdf",
+      downloadName: "Resume-Matheus-Araujo-Pereira-EN.pdf",
+    },
     header: {
       cta: "Contact",
       openMenu: "Open menu",
