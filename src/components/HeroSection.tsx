@@ -112,16 +112,16 @@ export function HeroSection() {
           <div className="min-w-0 lg:col-span-5">
             <figure className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] dark:border-[#27272A] dark:bg-[#111114]">
               <div className="bg-[#F8FAFC] px-6 pt-8 pb-6 dark:bg-[#111114]">
-                <div className="mx-auto h-56 w-56 overflow-hidden rounded-full border-2 border-white bg-zinc-200 ring-2 ring-blue-600/35 sm:h-60 sm:w-60 dark:border-zinc-900 dark:bg-zinc-800 dark:ring-blue-500/45">
+                <div className="mx-auto flex h-56 w-56 items-end justify-center overflow-hidden rounded-full border-2 border-white bg-zinc-200 pt-6 ring-2 ring-blue-600/35 sm:h-60 sm:w-60 dark:border-zinc-900 dark:bg-zinc-800 dark:ring-blue-500/45">
                   <Image
                     src={PROFILE.photoPath}
                     alt={PROFILE.name}
-                    width={240}
-                    height={240}
+                    width={436}
+                    height={436}
                     quality={100}
                     priority
-                    sizes="240px"
-                    className="h-full w-full scale-115 translate-y-2 object-cover object-top contrast-[1.03]"
+                    sizes="(min-width: 640px) 240px, 224px"
+                    className="h-full w-full object-contain object-bottom"
                   />
                 </div>
               </div>
