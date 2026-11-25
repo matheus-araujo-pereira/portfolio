@@ -36,8 +36,8 @@ export function ProjectsSection() {
                   aria-hidden="true"
                   className={`h-1 w-full ${
                     isEmerald
-                      ? "bg-gradient-to-r from-[#059669] via-emerald-500 to-teal-400"
-                      : "bg-gradient-to-r from-[#2563EB] via-blue-500 to-sky-400"
+                      ? "bg-linear-to-r from-[#059669] via-emerald-500 to-teal-400"
+                      : "bg-linear-to-r from-[#2563EB] via-blue-500 to-sky-400"
                   }`}
                 />
 

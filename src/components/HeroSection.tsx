@@ -23,11 +23,11 @@ export function HeroSection() {
       {/* Subtle architectural radial washes */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-28 right-0 h-[440px] w-[440px] rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/15"
+        className="pointer-events-none absolute -top-28 right-0 h-110 w-110 rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/15"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 -left-24 h-[340px] w-[340px] rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-500/10"
+        className="pointer-events-none absolute bottom-0 -left-24 h-85 w-85 rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-500/10"
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -92,7 +92,7 @@ export function HeroSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#2563EB] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] sm:text-base"
               >
-                <WhatsAppIcon className="h-[18px] w-[18px]" />
+                <WhatsAppIcon className="h-4.5 w-4.5" />
                 <span>Solicitar Orçamento (WhatsApp)</span>
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -145,7 +145,7 @@ export function HeroSection() {
               <div className="border-b border-slate-200/80 bg-[#0F172A] px-6 py-5 text-white dark:border-slate-800 dark:bg-slate-900/90">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3.5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB] to-blue-700 font-mono text-base font-bold text-white shadow-inner ring-1 ring-white/15">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-[#2563EB] to-blue-700 font-mono text-base font-bold text-white shadow-inner ring-1 ring-white/15">
                       {PROFILE.initials}
                     </div>
                     <div>
