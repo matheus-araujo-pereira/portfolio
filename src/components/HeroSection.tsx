@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight, Download } from "lucide-react";
 import { PROFILE } from "@/data/profile";
 import {
@@ -19,23 +20,41 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-10">
           {/* Left Editorial Column */}
           <div className="lg:col-span-6">
-            {/* Top Mono Metadata Line */}
-            <div className="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-[#57564F] uppercase dark:text-[#9E9D96]">
-              <span>{PROFILE.heroEyebrow}</span>
-              <span aria-hidden="true">/</span>
-              <span>{PROFILE.locationShort}</span>
-              <span aria-hidden="true">•</span>
-              <span className="inline-flex items-center gap-1.5 text-[#141413] dark:text-[#F4F3EE]">
-                <span
-                  className="h-2 w-2 rounded-full bg-[#4ADE80]"
-                  aria-hidden="true"
+            {/* Compact Studio Identity Seal */}
+            <div className="flex items-center gap-3.5">
+              <div className="flex h-12 w-12 shrink-0 items-end justify-center overflow-hidden rounded-xl border border-[#DCD9CE] bg-[#E8E5DC] dark:border-[#2E2E2A] dark:bg-[#1C1C1A]">
+                <Image
+                  src={PROFILE.photoPath}
+                  alt={PROFILE.name}
+                  width={48}
+                  height={48}
+                  sizes="48px"
+                  loading="eager"
+                  className="h-full w-full object-contain object-bottom pt-1"
                 />
-                <span>DISPONÍVEL</span>
-              </span>
+              </div>
+
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                  <p className="text-sm font-semibold tracking-tight text-[#141413] dark:text-[#F4F3EE]">
+                    {PROFILE.name}
+                  </p>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-[#141413] uppercase dark:text-[#F4F3EE]">
+                    <span
+                      className="h-2 w-2 rounded-full bg-[#4ADE80]"
+                      aria-hidden="true"
+                    />
+                    <span>Disponível</span>
+                  </span>
+                </div>
+                <p className="mt-0.5 font-mono text-[11px] tracking-wider text-[#57564F] uppercase dark:text-[#9E9D96]">
+                  {PROFILE.heroEyebrow} • {PROFILE.locationShort}
+                </p>
+              </div>
             </div>
 
             {/* Editorial Display Serif H1 */}
-            <h1 className="mt-6 font-serif text-5xl leading-[1.05] font-normal tracking-[-0.03em] text-[#141413] sm:text-6xl dark:text-[#F4F3EE]">
+            <h1 className="mt-7 font-serif text-5xl leading-[1.05] font-normal tracking-[-0.03em] text-[#141413] sm:text-6xl dark:text-[#F4F3EE]">
               Sistemas críticos e produtos digitais com rigor de engenharia e{" "}
               <em className="italic text-[#C4552D] dark:text-[#D96B43]">
                 design autoral
@@ -46,14 +65,6 @@ export function HeroSection() {
             {/* Direct Positioning Paragraph */}
             <p className="mt-6 max-w-xl text-base leading-relaxed text-[#57564F] sm:text-lg dark:text-[#9E9D96]">
               {PROFILE.heroParagraph}
-            </p>
-
-            {/* Author Signature Line */}
-            <p className="mt-4 font-mono text-xs text-[#57564F] dark:text-[#9E9D96]">
-              <span className="text-[#141413] dark:text-[#F4F3EE]">
-                {PROFILE.name}
-              </span>{" "}
-              — {PROFILE.role}
             </p>
 
             {/* Primary Actions */}

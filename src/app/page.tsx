@@ -12,6 +12,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: PROFILE.name,
+  image: PROFILE.photoPath,
   jobTitle: PROFILE.role,
   description: PROFILE.heroParagraph,
   email: `mailto:${PROFILE.email}`,

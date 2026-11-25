@@ -19,6 +19,7 @@ export const PROFILE = {
   linkedinUrl: "https://www.linkedin.com/in/matheus-araujo-pereira",
   freelasUrl: "https://www.99freelas.com.br",
   resumePath: "/curriculo-matheus-araujo-pereira.pdf",
+  photoPath: "/matheus-araujo.png",
 } as const;
 
 export function buildWhatsAppUrl(message: string): string {
