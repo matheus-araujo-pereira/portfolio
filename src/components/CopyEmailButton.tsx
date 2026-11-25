@@ -5,14 +5,12 @@ import { Check, Copy, Mail } from "lucide-react";
 import { PROFILE } from "@/data/profile";
 
 interface CopyEmailButtonProps {
-  variant?: "pill" | "inline" | "card";
-  surface?: "default" | "dark";
+  variant?: "square" | "row";
   className?: string;
 }
 
 export function CopyEmailButton({
-  variant = "pill",
-  surface = "default",
+  variant = "square",
   className = "",
 }: CopyEmailButtonProps) {
   const [copied, setCopied] = useState(false);
@@ -63,103 +61,37 @@ export function CopyEmailButton({
     }
   };
 
-  if (variant === "card") {
-    const isDarkSurface = surface === "dark";
+  if (variant === "square") {
     return (
-      <button
-        type="button"
-        onClick={handleCopy}
-        aria-live="polite"
-        className={`group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3.5 text-left transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] ${
-          copied
-            ? isDarkSurface
-              ? "border-emerald-400/60 bg-emerald-500/15 text-emerald-200"
-              : "border-[#059669]/60 bg-[#059669]/10 text-[#059669] dark:border-emerald-400/50 dark:bg-emerald-500/15 dark:text-emerald-300"
-            : isDarkSurface
-              ? "border-slate-700/80 bg-slate-900/75 text-slate-100 hover:border-blue-400/60 hover:bg-slate-900"
-              : "border-slate-200 bg-white text-slate-800 hover:border-[#2563EB]/50 hover:shadow-sm dark:border-slate-700/80 dark:bg-slate-800/80 dark:text-slate-100 dark:hover:border-blue-400/50"
-        } ${className}`}
-      >
-        <span className="flex min-w-0 items-center gap-3">
-          <span
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors ${
-              copied
-                ? "bg-[#059669] text-white"
-                : isDarkSurface
-                  ? "bg-blue-500/15 text-blue-400"
-                  : "bg-blue-50 text-[#2563EB] dark:bg-blue-500/15 dark:text-blue-400"
-            }`}
-          >
-            {copied ? (
-              <Check className="h-4 w-4" aria-hidden="true" />
-            ) : (
-              <Mail className="h-4 w-4" aria-hidden="true" />
-            )}
-          </span>
-          <span className="min-w-0">
-            <span
-              className={`block text-xs font-medium ${
-                isDarkSurface
-                  ? "text-slate-400"
-                  : "text-slate-500 dark:text-slate-400"
-              }`}
-            >
-              E-mail direto
-            </span>
-            <span className="block truncate font-mono text-sm font-semibold">
-              {PROFILE.email}
-            </span>
-          </span>
-        </span>
-        <span
-          className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors ${
+      <div className="relative inline-flex items-center">
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={`Copiar e-mail ${PROFILE.email}`}
+          title={copied ? "Copiado!" : `Copiar e-mail (${PROFILE.email})`}
+          className={`inline-flex h-10 w-10 items-center justify-center rounded-md border transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:focus-visible:outline-[#D96B43] ${
             copied
-              ? "bg-[#059669] text-white"
-              : isDarkSurface
-                ? "bg-slate-800 text-slate-200 group-hover:bg-[#2563EB] group-hover:text-white"
-                : "bg-slate-100 text-slate-600 group-hover:bg-[#2563EB] group-hover:text-white dark:bg-slate-700/80 dark:text-slate-300"
-          }`}
+              ? "border-[#C4552D] bg-[#C4552D]/10 text-[#C4552D] dark:border-[#D96B43] dark:bg-[#D96B43]/15 dark:text-[#D96B43]"
+              : "border-[#DCD9CE] bg-[#FFFFFF] text-[#57564F] hover:border-[#141413] hover:text-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#9E9D96] dark:hover:border-[#F4F3EE] dark:hover:text-[#F4F3EE]"
+          } ${className}`}
         >
           {copied ? (
-            <>
-              <Check className="h-3.5 w-3.5" aria-hidden="true" />
-              Copiado!
-            </>
+            <Check className="h-4 w-4" aria-hidden="true" />
           ) : (
-            <>
-              <Copy className="h-3.5 w-3.5" aria-hidden="true" />
-              Copiar
-            </>
+            <Mail className="h-4 w-4" aria-hidden="true" />
           )}
-        </span>
-      </button>
-    );
-  }
+        </button>
 
-  if (variant === "inline") {
-    return (
-      <button
-        type="button"
-        onClick={handleCopy}
-        aria-live="polite"
-        className={`inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] ${
-          copied
-            ? "border-[#059669]/50 bg-[#059669]/10 text-[#059669] dark:border-emerald-400/40 dark:bg-emerald-500/15 dark:text-emerald-300"
-            : "border-slate-200 bg-slate-50 text-slate-700 hover:border-[#2563EB]/40 hover:text-[#2563EB] dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-200 dark:hover:border-blue-400/40 dark:hover:text-blue-400"
-        } ${className}`}
-      >
-        {copied ? (
-          <>
-            <Check className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Copiado!</span>
-          </>
-        ) : (
-          <>
-            <Copy className="h-3.5 w-3.5" aria-hidden="true" />
-            <span className="font-mono">{PROFILE.email}</span>
-          </>
+        {copied && (
+          <span
+            role="status"
+            aria-live="polite"
+            className="ml-2 font-mono text-xs font-medium text-[#C4552D] dark:text-[#D96B43]"
+          >
+            Copiado!
+          </span>
         )}
-      </button>
+      </div>
     );
   }
 
@@ -168,24 +100,39 @@ export function CopyEmailButton({
       type="button"
       onClick={handleCopy}
       aria-live="polite"
-      title={`Copiar e-mail: ${PROFILE.email}`}
-      className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-sm font-medium transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] ${
+      className={`group inline-flex items-center justify-between gap-4 rounded-md border px-4 py-3 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:focus-visible:outline-[#D96B43] ${
         copied
-          ? "border-[#059669]/50 bg-[#059669]/10 text-[#059669] dark:border-emerald-400/50 dark:bg-emerald-500/15 dark:text-emerald-300"
-          : "border-slate-200 bg-white text-slate-700 hover:border-[#2563EB]/50 hover:text-[#2563EB] dark:border-slate-700/80 dark:bg-slate-800/70 dark:text-slate-200 dark:hover:border-blue-400/50 dark:hover:text-blue-400"
+          ? "border-[#C4552D] bg-[#C4552D]/10 text-[#C4552D] dark:border-[#D96B43] dark:bg-[#D96B43]/15 dark:text-[#D96B43]"
+          : "border-[#DCD9CE] bg-[#FFFFFF] text-[#141413] hover:border-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE]"
       } ${className}`}
     >
-      {copied ? (
-        <>
+      <span className="flex min-w-0 items-center gap-3">
+        {copied ? (
           <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
+        ) : (
+          <Mail
+            className="h-4 w-4 shrink-0 text-[#57564F] dark:text-[#9E9D96]"
+            aria-hidden="true"
+          />
+        )}
+        <span className="truncate font-mono text-sm">{PROFILE.email}</span>
+      </span>
+
+      <span className="inline-flex shrink-0 items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
+        {copied ? (
           <span>Copiado!</span>
-        </>
-      ) : (
-        <>
-          <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span>Copiar E-mail</span>
-        </>
-      )}
+        ) : (
+          <>
+            <Copy
+              className="h-3.5 w-3.5 text-[#57564F] transition-colors group-hover:text-[#141413] dark:text-[#9E9D96] dark:group-hover:text-[#F4F3EE]"
+              aria-hidden="true"
+            />
+            <span className="text-[#57564F] group-hover:text-[#141413] dark:text-[#9E9D96] dark:group-hover:text-[#F4F3EE]">
+              Copiar
+            </span>
+          </>
+        )}
+      </span>
     </button>
   );
 }

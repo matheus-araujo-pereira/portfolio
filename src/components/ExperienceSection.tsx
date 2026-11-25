@@ -1,117 +1,103 @@
-import { Briefcase, ChevronRight, MapPin } from "lucide-react";
-import { EXPERIENCES } from "@/data/profile";
+import { EDUCATION_SUMMARY, EXPERIENCES } from "@/data/profile";
 
 export function ExperienceSection() {
   return (
     <section
-      id="experiencia"
-      className="border-b border-slate-200/80 bg-white py-16 sm:py-20 lg:py-24 dark:border-slate-800/80 dark:bg-[#0D1426]"
+      id="trajetoria"
+      className="border-b border-[#DCD9CE] bg-[#F6F5F0] py-18 sm:py-24 dark:border-[#2E2E2A] dark:bg-[#141413]"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         {/* Section Heading */}
-        <div className="max-w-3xl">
-          <p className="font-mono text-xs font-semibold tracking-widest text-[#2563EB] uppercase dark:text-blue-400">
-            03 // Trajetória Executiva
-          </p>
-          <h2 className="mt-2.5 text-2xl font-extrabold tracking-tight text-[#0F172A] sm:text-4xl dark:text-[#F8FAFC]">
-            Experiência Profissional
-          </h2>
-          <p className="mt-3 text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
-            Evolução contínua em engenharia de software corporativa, liderando
-            entregas críticas no setor público fazendário e formando novos
-            profissionais de tecnologia.
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <p className="font-mono text-xs tracking-widest text-[#C4552D] uppercase dark:text-[#D96B43]">
+              04 / Currículo Executivo
+            </p>
+            <h2 className="mt-3 font-serif text-4xl leading-[1.08] font-normal tracking-tight text-[#141413] sm:text-5xl dark:text-[#F4F3EE]">
+              Experiência e formação
+            </h2>
+          </div>
+
+          <p className="max-w-sm text-sm leading-relaxed text-[#57564F] dark:text-[#9E9D96]">
+            Trajetória contínua em sistemas arrecadatórios públicos, liderança
+            técnica e formação acadêmica na Universidade Federal de Sergipe.
           </p>
         </div>
 
-        {/* Executive Vertical Timeline */}
-        <div className="relative mt-10 lg:mt-12">
-          {/* Vertical Spine */}
-          <div
-            aria-hidden="true"
-            className="absolute top-3 bottom-3 left-4 w-px bg-slate-200 sm:left-5 dark:bg-slate-800"
-          />
-
-          <ol className="space-y-6 sm:space-y-8">
-            {EXPERIENCES.map((exp) => (
-              <li key={exp.id} className="relative pl-12 sm:pl-14">
-                {/* Timeline Node */}
-                <span
-                  aria-hidden="true"
-                  className={`absolute top-6 left-2 flex h-4 w-4 items-center justify-center rounded-full ring-4 ring-white sm:left-3 dark:ring-[#0D1426] ${
-                    exp.current
-                      ? "bg-[#059669] dark:bg-emerald-400"
-                      : "bg-[#2563EB] dark:bg-blue-400"
-                  }`}
-                >
+        {/* Editorial Horizontal-Rule Experience Table */}
+        <div className="mt-12 divide-y divide-[#DCD9CE] border-y border-[#DCD9CE] dark:divide-[#2E2E2A] dark:border-[#2E2E2A]">
+          {EXPERIENCES.map((exp) => (
+            <article
+              key={exp.id}
+              className="grid grid-cols-1 gap-4 py-7 md:grid-cols-12 md:gap-8 sm:py-8"
+            >
+              {/* Left Period Column */}
+              <div className="md:col-span-3">
+                <div className="flex items-center gap-2.5">
+                  <span className="font-mono text-xs font-medium tracking-wider text-[#141413] sm:text-sm dark:text-[#F4F3EE]">
+                    {exp.period}
+                  </span>
                   {exp.current && (
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#059669] opacity-60 dark:bg-emerald-400" />
-                  )}
-                </span>
-
-                {/* Timeline Card */}
-                <article className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-6 shadow-xs transition-colors hover:border-[#2563EB]/40 sm:p-7 dark:border-slate-800 dark:bg-[#162033] dark:hover:border-blue-500/40">
-                  <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-lg font-bold tracking-tight text-[#0F172A] sm:text-xl dark:text-[#F8FAFC]">
-                          {exp.role}
-                        </h3>
-                        {exp.current && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-[#059669] ring-1 ring-emerald-200 dark:bg-emerald-500/15 dark:text-emerald-300 dark:ring-emerald-500/30">
-                            Cargo Atual
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-slate-600 dark:text-slate-300">
-                        <span className="inline-flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-200">
-                          <Briefcase
-                            className="h-4 w-4 shrink-0 text-[#2563EB] dark:text-blue-400"
-                            aria-hidden="true"
-                          />
-                          <span>{exp.organization}</span>
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 sm:text-sm dark:text-slate-400">
-                          <MapPin
-                            className="h-3.5 w-3.5 shrink-0"
-                            aria-hidden="true"
-                          />
-                          <span>{exp.location}</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    <span className="inline-flex w-fit shrink-0 items-center rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-mono text-xs font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-200">
-                      {exp.period}
+                    <span className="font-mono text-[10px] font-medium tracking-widest text-[#C4552D] uppercase dark:text-[#D96B43]">
+                      • Atual
                     </span>
-                  </div>
+                  )}
+                </div>
+                <p className="mt-1 font-mono text-xs text-[#57564F] dark:text-[#9E9D96]">
+                  {exp.location}
+                </p>
+              </div>
 
-                  <p className="mt-4 text-sm font-medium text-slate-700 dark:text-slate-200">
-                    {exp.summary}
-                  </p>
+              {/* Right Role & Deliverables Column */}
+              <div className="md:col-span-9">
+                <h3 className="font-serif text-xl leading-snug font-normal tracking-[-0.015em] text-[#141413] sm:text-2xl dark:text-[#F4F3EE]">
+                  {exp.role}
+                </h3>
 
-                  <ul className="mt-4 space-y-2.5">
-                    {exp.deliverables.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300"
-                      >
-                        <ChevronRight
-                          className={`mt-1 h-4 w-4 shrink-0 ${
-                            exp.current
-                              ? "text-[#059669] dark:text-emerald-400"
-                              : "text-[#2563EB] dark:text-blue-400"
-                          }`}
-                          aria-hidden="true"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </li>
+                <p className="mt-1 text-sm font-medium text-[#57564F] dark:text-[#9E9D96]">
+                  {exp.organization}
+                </p>
+
+                <ul className="mt-4 space-y-2">
+                  {exp.highlights.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-sm leading-relaxed text-[#57564F] dark:text-[#9E9D96]"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#C4552D] dark:bg-[#D96B43]"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Compact Academic Formation & Languages Strip */}
+        <div className="mt-12">
+          <p className="font-mono text-xs tracking-widest text-[#57564F] uppercase dark:text-[#9E9D96]">
+            Formação Acadêmica &amp; Idiomas
+          </p>
+
+          <div className="mt-5 grid grid-cols-1 divide-y divide-[#DCD9CE] rounded-xl border border-[#DCD9CE] bg-[#FFFFFF] md:grid-cols-3 md:divide-x md:divide-y-0 dark:divide-[#2E2E2A] dark:border-[#2E2E2A] dark:bg-[#1C1C1A]">
+            {EDUCATION_SUMMARY.map((item) => (
+              <div key={item.title} className="p-5 sm:p-6">
+                <p className="font-mono text-xs text-[#C4552D] dark:text-[#D96B43]">
+                  {item.period}
+                </p>
+                <h3 className="mt-2 font-serif text-lg leading-snug font-normal text-[#141413] dark:text-[#F4F3EE]">
+                  {item.title}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-[#57564F] dark:text-[#9E9D96]">
+                  {item.institution}
+                </p>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </div>
     </section>

@@ -1,18 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import {
+  JetBrains_Mono,
+  Newsreader,
+  Plus_Jakarta_Sans,
+} from "next/font/google";
 import "./globals.css";
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -26,29 +38,29 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Matheus Araujo Pereira | Engenheiro de Software Full Stack & UI/UX Designer",
+      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX Designer",
     template: "%s | Matheus Araujo Pereira",
   },
   description:
-    "Engenheiro de Software Full Stack & UI/UX Designer em Aracaju, SE. Desenvolvimento de sistemas corporativos de alta criticidade (Java/Spring Boot, Angular, Next.js), APIs REST, PIX tributário e interfaces digitais de alta conversão.",
+    "Engenharia de software e design autoral em Aracaju, SE. Sistemas críticos em Java/Spring Boot, Angular e Next.js, liquidação tributária via PIX na SEMFAZ e produtos web sob medida.",
   keywords: [
     "Matheus Araujo Pereira",
     "Engenheiro de Software",
     "Desenvolvedor Full Stack",
-    "Java",
+    "Java 21",
     "Spring Boot",
     "Angular",
     "Next.js",
     "TypeScript",
     "UI/UX Designer",
+    "Design System",
     "Aracaju",
     "Sergipe",
     "UFS",
     "SEMFAZ Aracaju",
-    "Sistemas Corporativos",
-    "APIs REST",
-    "Landing Pages",
-    "Freelancer",
+    "SIGEA",
+    "Thomas Clay",
+    "99Freelas",
   ],
   authors: [
     {
@@ -65,18 +77,18 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: "/",
-    siteName: "Matheus Araujo Pereira — Engenharia de Software & UI/UX",
+    siteName: "Matheus Araujo Pereira — Engenharia de Software & Design",
     title:
-      "Matheus Araujo Pereira | Engenheiro de Software Full Stack & UI/UX Designer",
+      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX Designer",
     description:
-      "Sistemas corporativos de alta criticidade, aplicações web sob medida, APIs REST e interfaces digitais de alta conversão. Atuação em sistemas arrecadatórios via PIX, Java/Spring Boot, Angular e Next.js.",
+      "Sistemas críticos e produtos digitais com rigor de engenharia e design autoral. Java/Spring Boot, Angular, Next.js, PostgreSQL, Oracle DB e Figma.",
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Matheus Araujo Pereira | Engenheiro de Software Full Stack & UI/UX Designer",
+      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX Designer",
     description:
-      "Desenvolvimento de sistemas corporativos, aplicações web sob medida, APIs REST e UI/UX Design. Disponível para projetos freelance e oportunidades em Engenharia de Software.",
+      "Sistemas críticos e produtos digitais com rigor de engenharia e design autoral. Disponível para projetos freelance e oportunidades em Engenharia de Software.",
   },
   robots: {
     index: true,
@@ -94,8 +106,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F8FAFC" },
-    { media: "(prefers-color-scheme: dark)", color: "#0F172A" },
+    { media: "(prefers-color-scheme: dark)", color: "#141413" },
+    { media: "(prefers-color-scheme: light)", color: "#F6F5F0" },
   ],
 };
 
@@ -103,8 +115,7 @@ const themeInitScript = `
 (function() {
   try {
     var stored = localStorage.getItem('theme');
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var isDark = stored === 'dark' || (!stored && prefersDark);
+    var isDark = stored !== 'light';
     document.documentElement.classList.toggle('dark', isDark);
     document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
   } catch (e) {}
@@ -116,12 +127,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      className={`dark ${newsreader.variable} ${plusJakartaSans.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="min-h-full flex flex-col bg-[#F8FAFC] text-[#0F172A] dark:bg-[#0F172A] dark:text-[#F8FAFC]">
+      <body className="min-h-full flex flex-col bg-[#F6F5F0] text-[#141413] dark:bg-[#141413] dark:text-[#F4F3EE]">
         {children}
       </body>
     </html>

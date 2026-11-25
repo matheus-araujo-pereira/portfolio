@@ -16,181 +16,137 @@ export function createOgImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "56px 64px",
-          background:
-            "linear-gradient(135deg, #0F172A 0%, #111E36 55%, #0B1222 100%)",
-          color: "#F8FAFC",
+          background: "#141413",
+          color: "#F4F3EE",
           fontFamily: "sans-serif",
-          position: "relative",
+          border: "1px solid #2E2E2A",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: "-120px",
-            right: "-80px",
-            width: "440px",
-            height: "440px",
-            borderRadius: "9999px",
-            background:
-              "radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, rgba(37, 99, 235, 0) 70%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-140px",
-            left: "-60px",
-            width: "380px",
-            height: "380px",
-            borderRadius: "9999px",
-            background:
-              "radial-gradient(circle, rgba(5, 150, 105, 0.22) 0%, rgba(5, 150, 105, 0) 70%)",
-          }}
-        />
-
-        {/* Top bar */}
+        {/* Top editorial hairline */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
+            paddingBottom: "24px",
+            borderBottom: "1px solid #2E2E2A",
           }}
         >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              fontFamily: "Georgia, serif",
+              fontSize: "34px",
+              fontWeight: 500,
+              letterSpacing: "-0.02em",
+              color: "#F4F3EE",
+            }}
+          >
+            MAP
+            <span style={{ color: "#D96B43" }}>.</span>
+          </div>
+
           <div
             style={{
               display: "flex",
               alignItems: "center",
               gap: "12px",
-              padding: "10px 20px",
-              borderRadius: "9999px",
-              background: "rgba(37, 99, 235, 0.16)",
-              border: "1px solid rgba(59, 130, 246, 0.45)",
-              color: "#93C5FD",
-              fontSize: "20px",
-              fontWeight: 600,
-              letterSpacing: "0.02em",
+              fontSize: "17px",
+              letterSpacing: "0.08em",
+              color: "#9E9D96",
             }}
           >
-            Engenharia de Software • Full Stack • UI/UX
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              padding: "10px 18px",
-              borderRadius: "9999px",
-              background: "rgba(5, 150, 105, 0.16)",
-              border: "1px solid rgba(16, 185, 129, 0.4)",
-              color: "#6EE7B7",
-              fontSize: "19px",
-              fontWeight: 600,
-            }}
-          >
+            <span>ENGENHARIA DE SOFTWARE / ARACAJU, SE</span>
             <div
               style={{
-                width: "10px",
-                height: "10px",
+                width: "9px",
+                height: "9px",
                 borderRadius: "9999px",
-                background: "#10B981",
+                background: "#4ADE80",
               }}
             />
-            Disponível para Projetos
+            <span style={{ color: "#F4F3EE" }}>DISPONÍVEL</span>
           </div>
         </div>
 
-        {/* Main Content */}
+        {/* Center editorial statement */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "18px",
-            maxWidth: "980px",
+            gap: "20px",
+            maxWidth: "1020px",
           }}
         >
           <div
             style={{
-              fontSize: "64px",
-              fontWeight: 800,
+              fontFamily: "Georgia, serif",
+              fontSize: "58px",
+              fontWeight: 400,
               lineHeight: 1.08,
-              letterSpacing: "-0.03em",
-              color: "#F8FAFC",
+              letterSpacing: "-0.025em",
+              color: "#F4F3EE",
             }}
           >
-            Matheus Araujo Pereira
+            Sistemas críticos e produtos digitais com rigor de engenharia e
+            design autoral.
           </div>
+
           <div
             style={{
-              fontSize: "32px",
-              fontWeight: 600,
-              color: "#60A5FA",
-              lineHeight: 1.25,
-            }}
-          >
-            Engenheiro de Software Full Stack & UI/UX Designer
-          </div>
-          <div
-            style={{
-              fontSize: "23px",
-              color: "#CBD5E1",
+              fontSize: "24px",
+              color: "#9E9D96",
               lineHeight: 1.45,
-              marginTop: "4px",
             }}
           >
-            Sistemas corporativos de alta criticidade, aplicações web sob
-            medida, APIs REST e interfaces digitais de alta conversão.
+            Matheus Araujo Pereira — Engenheiro de Software Full Stack &amp;
+            UI/UX Designer
           </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom metadata bar */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "1px solid rgba(148, 163, 184, 0.2)",
+            borderTop: "1px solid #2E2E2A",
             paddingTop: "24px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              gap: "12px",
-            }}
-          >
+          <div style={{ display: "flex", gap: "12px" }}>
             {[
-              "Java & Spring Boot",
+              "Java 21 & Spring Boot",
               "Angular & Next.js",
               "PostgreSQL & Oracle",
-              "UI/UX Figma",
-            ].map((tag) => (
+              "Figma & Design Systems",
+            ].map((item) => (
               <div
-                key={tag}
+                key={item}
                 style={{
-                  padding: "8px 16px",
-                  borderRadius: "10px",
-                  background: "rgba(30, 41, 59, 0.85)",
-                  border: "1px solid rgba(148, 163, 184, 0.22)",
-                  color: "#E2E8F0",
-                  fontSize: "18px",
-                  fontWeight: 500,
+                  padding: "8px 14px",
+                  borderRadius: "6px",
+                  background: "#1C1C1A",
+                  border: "1px solid #2E2E2A",
+                  color: "#F4F3EE",
+                  fontSize: "16px",
                 }}
               >
-                {tag}
+                {item}
               </div>
             ))}
           </div>
 
           <div
             style={{
-              fontSize: "20px",
-              color: "#94A3B8",
-              fontWeight: 500,
+              fontSize: "17px",
+              color: "#D96B43",
+              fontWeight: 600,
             }}
           >
-            Aracaju, SE – Brasil
+            matharaupere@gmail.com
           </div>
         </div>
       </div>

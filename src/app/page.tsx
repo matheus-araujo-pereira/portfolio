@@ -2,8 +2,9 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { SocialProofStackSection } from "@/components/SocialProofStackSection";
+import { ProcessSection } from "@/components/ProcessSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
-import { StackEducationSection } from "@/components/StackEducationSection";
 import { ContactFooterSection } from "@/components/ContactFooterSection";
 import { PROFILE } from "@/data/profile";
 
@@ -12,7 +13,7 @@ const personJsonLd = {
   "@type": "Person",
   name: PROFILE.name,
   jobTitle: PROFILE.role,
-  description: PROFILE.positioning,
+  description: PROFILE.heroParagraph,
   email: `mailto:${PROFILE.email}`,
   telephone: "+55-79-99998-4882",
   address: {
@@ -21,22 +22,25 @@ const personJsonLd = {
     addressRegion: "SE",
     addressCountry: "BR",
   },
-  sameAs: [PROFILE.linkedinUrl, PROFILE.githubUrl],
+  sameAs: [PROFILE.linkedinUrl, PROFILE.githubUrl, PROFILE.freelasUrl],
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Universidade Federal de Sergipe",
   },
   knowsAbout: [
-    "Java",
+    "Java 21",
     "Spring Boot",
     "Angular",
     "Next.js",
     "TypeScript",
     "PostgreSQL",
     "Oracle Database",
-    "UI/UX Design",
+    "MySQL",
+    "Docker",
+    "Jenkins",
     "Figma",
-    "REST APIs",
+    "UI/UX Design",
+    "Design Systems",
   ],
 };
 
@@ -52,8 +56,9 @@ export default function HomePage() {
         <HeroSection />
         <ServicesSection />
         <ProjectsSection />
+        <SocialProofStackSection />
+        <ProcessSection />
         <ExperienceSection />
-        <StackEducationSection />
       </main>
       <ContactFooterSection />
     </>

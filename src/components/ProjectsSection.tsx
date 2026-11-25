@@ -1,109 +1,110 @@
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/data/profile";
 
 export function ProjectsSection() {
   return (
     <section
-      id="projetos"
-      className="border-b border-slate-200/80 bg-[#F8FAFC] py-16 sm:py-20 lg:py-24 dark:border-slate-800/80 dark:bg-[#0F172A]"
+      id="cases"
+      className="border-b border-[#DCD9CE] bg-[#ECEAE2]/50 py-18 sm:py-24 dark:border-[#2E2E2A] dark:bg-[#171715]"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         {/* Section Heading */}
-        <div className="max-w-3xl">
-          <p className="font-mono text-xs font-semibold tracking-widest text-[#2563EB] uppercase dark:text-blue-400">
-            02 // Portfólio &amp; Cases
-          </p>
-          <h2 className="mt-2.5 text-2xl font-extrabold tracking-tight text-[#0F172A] sm:text-4xl dark:text-[#F8FAFC]">
-            Portfólio &amp; Cases em Destaque
-          </h2>
-          <p className="mt-3 text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
-            Projetos reais entregues em produção governamental, pesquisa clínica
-            universitária, consultoria freelance e engenharia documental.
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <p className="font-mono text-xs tracking-widest text-[#C4552D] uppercase dark:text-[#D96B43]">
+              02 / Projetos Selecionados
+            </p>
+            <h2 className="mt-3 font-serif text-4xl leading-[1.08] font-normal tracking-tight text-[#141413] sm:text-5xl dark:text-[#F4F3EE]">
+              Entregas reais em produção
+            </h2>
+          </div>
+
+          <p className="max-w-sm text-sm leading-relaxed text-[#57564F] dark:text-[#9E9D96]">
+            Sistemas governamentais de alta criticidade, plataforma clínica
+            universitária, design system comercial e engenharia documental.
           </p>
         </div>
 
-        {/* 4 Project Case Cards */}
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-12">
-          {PROJECTS.map((project) => {
-            const isEmerald = project.accent === "emerald";
-            return (
-              <article
-                key={project.id}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-[#2563EB]/50 hover:shadow-md dark:border-slate-800 dark:bg-[#162033] dark:hover:border-blue-500/50"
-              >
-                {/* Top Accent Strip */}
-                <div
-                  aria-hidden="true"
-                  className={`h-1 w-full ${
-                    isEmerald
-                      ? "bg-linear-to-r from-[#059669] via-emerald-500 to-teal-400"
-                      : "bg-linear-to-r from-[#2563EB] via-blue-500 to-sky-400"
-                  }`}
-                />
-
-                <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="font-mono text-[11px] font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400">
-                        {project.category}
-                      </span>
-                      <span
-                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-mono text-[11px] font-semibold ${
-                          isEmerald
-                            ? "bg-emerald-50 text-[#059669] ring-1 ring-emerald-200 dark:bg-emerald-500/15 dark:text-emerald-300 dark:ring-emerald-500/30"
-                            : "bg-blue-50 text-[#2563EB] ring-1 ring-blue-200 dark:bg-blue-500/15 dark:text-blue-300 dark:ring-blue-500/30"
-                        }`}
-                      >
-                        {project.highlightBadge}
-                      </span>
+        {/* 2x2 Browser / Document Window Showcase */}
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {PROJECTS.map((project) => (
+            <article
+              key={project.id}
+              className="group flex flex-col justify-between overflow-hidden rounded-xl border border-[#DCD9CE] bg-[#FFFFFF] transition-colors hover:border-[#141413]/50 dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:hover:border-[#F4F3EE]/35"
+            >
+              <div>
+                {/* Browser / Document Window Chrome */}
+                <div className="flex items-center justify-between gap-3 border-b border-[#DCD9CE] bg-[#F6F5F0] px-4 py-2.5 dark:border-[#2E2E2A] dark:bg-[#232320]">
+                  <div className="flex min-w-0 items-center gap-2.5">
+                    <div
+                      className="flex shrink-0 items-center gap-1.5"
+                      aria-hidden="true"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-[#DCD9CE] dark:bg-[#3B3B36]" />
+                      <span className="h-2 w-2 rounded-full bg-[#DCD9CE] dark:bg-[#3B3B36]" />
+                      <span className="h-2 w-2 rounded-full bg-[#DCD9CE] dark:bg-[#3B3B36]" />
                     </div>
-
-                    <h3 className="mt-4 text-lg font-bold tracking-tight text-[#0F172A] transition-colors group-hover:text-[#2563EB] sm:text-xl dark:text-[#F8FAFC] dark:group-hover:text-blue-400">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB]"
-                      >
-                        {project.title}
-                      </a>
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-[15px] dark:text-slate-300">
-                      {project.description}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-1.5">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 font-mono text-xs font-medium text-slate-700 dark:border-slate-700/80 dark:bg-slate-800/80 dark:text-slate-200"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    <span className="truncate font-mono text-[11px] text-[#57564F] dark:text-[#9E9D96]">
+                      {project.windowLabel}
+                    </span>
                   </div>
 
-                  <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-5 dark:border-slate-800">
+                  <span className="shrink-0 font-mono text-[11px] text-[#57564F] dark:text-[#9E9D96]">
+                    {project.year}
+                  </span>
+                </div>
+
+                {/* Case Content */}
+                <div className="p-6 sm:p-7">
+                  <span className="font-mono text-[11px] font-medium tracking-wider text-[#C4552D] uppercase dark:text-[#D96B43]">
+                    {project.metricBadge}
+                  </span>
+
+                  <h3 className="mt-3 font-serif text-2xl leading-[1.2] font-normal tracking-[-0.02em] text-[#141413] dark:text-[#F4F3EE]">
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-[#2563EB] transition-colors hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] dark:text-blue-400 dark:hover:text-blue-300"
+                      className="transition-colors hover:text-[#C4552D] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:hover:text-[#D96B43] dark:focus-visible:outline-[#D96B43]"
                     >
-                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                      <span>{project.linkLabel}</span>
-                      <ArrowUpRight
-                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        aria-hidden="true"
-                      />
+                      {project.title}
                     </a>
+                  </h3>
+
+                  <p className="mt-3.5 text-sm leading-relaxed text-[#57564F] sm:text-[15px] dark:text-[#9E9D96]">
+                    {project.problemSolved}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded border border-[#DCD9CE] bg-[#F6F5F0] px-2 py-0.5 font-mono text-[11px] text-[#57564F] dark:border-[#2E2E2A] dark:bg-[#232320] dark:text-[#9E9D96]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </article>
-            );
-          })}
+              </div>
+
+              {/* Footer Action Row */}
+              <div className="flex items-center justify-between border-t border-[#DCD9CE] px-6 py-4 sm:px-7 dark:border-[#2E2E2A]">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-[#141413] transition-colors hover:text-[#C4552D] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C4552D] dark:text-[#F4F3EE] dark:hover:text-[#D96B43] dark:focus-visible:outline-[#D96B43]"
+                >
+                  <span>{project.linkLabel}</span>
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

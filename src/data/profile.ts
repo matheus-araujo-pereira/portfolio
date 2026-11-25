@@ -1,18 +1,15 @@
 export const PROFILE = {
   name: "Matheus Araujo Pereira",
   shortName: "Matheus Araujo",
-  initials: "MA",
+  monogram: "MAP",
   role: "Engenheiro de Software Full Stack & UI/UX Designer",
-  badge: "Engenharia de Software • Full Stack • UI/UX",
-  headline:
-    "Rigor de sistemas críticos aliado à agilidade na entrega de produtos digitais.",
-  positioning:
-    "Desenvolvimento de sistemas corporativos de alta criticidade, aplicações web sob medida, APIs REST e interfaces digitais de alta conversão.",
-  summary:
-    "Engenheiro de Software com foco no ecossistema Java/Spring Boot e Angular/TypeScript desde 2020, atuação em sistemas arrecadatórios de larga escala na SEMFAZ Aracaju (liquidação instantânea via PIX e integrações governamentais), mestrando em Ciência da Computação e graduando em Engenharia de Computação pela UFS.",
   location: "Aracaju, SE – Brasil",
+  locationShort: "ARACAJU, SE",
   status:
     "Disponível para projetos freelance e oportunidades em Engenharia de Software",
+  heroEyebrow: "ENGENHARIA DE SOFTWARE",
+  heroParagraph:
+    "Atuação desde 2020 no ecossistema Java/Spring Boot, Angular e Next.js — da arquitetura de liquidação tributária via PIX na SEMFAZ Aracaju à criação de plataformas web, sistemas corporativos e interfaces digitais sob medida.",
   email: "matharaupere@gmail.com",
   whatsappDisplay: "(79) 99998-4882",
   whatsappNumber: "5579999984882",
@@ -20,6 +17,7 @@ export const PROFILE = {
     "https://wa.me/5579999984882?text=Ol%C3%A1%2C%20Matheus!%20Vi%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.",
   githubUrl: "https://github.com/matheus-araujo-pereira",
   linkedinUrl: "https://www.linkedin.com/in/matheus-araujo-pereira",
+  freelasUrl: "https://www.99freelas.com.br",
   resumePath: "/curriculo-matheus-araujo-pereira.pdf",
 } as const;
 
@@ -34,135 +32,239 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Início", href: "#inicio", id: "inicio" },
   { label: "Serviços", href: "#servicos", id: "servicos" },
-  { label: "Projetos", href: "#projetos", id: "projetos" },
-  { label: "Experiência", href: "#experiencia", id: "experiencia" },
-  { label: "Stack & Formação", href: "#stack", id: "stack" },
-  { label: "Contato", href: "#contato", id: "contato" },
+  { label: "Cases", href: "#cases", id: "cases" },
+  { label: "Processo", href: "#processo", id: "processo" },
+  { label: "Trajetória", href: "#trajetoria", id: "trajetoria" },
+  { label: "Stack", href: "#stack", id: "stack" },
 ];
 
-export interface HeroMetric {
-  value: string;
-  label: string;
-  detail: string;
+export interface WorkspaceTab {
+  id: string;
+  fileName: string;
+  folder: string;
+  path: string;
+  language: string;
+  statusLabel: string;
+  title: string;
+  summary: string;
+  architectureLines: { label: string; value: string }[];
+  metrics: { label: string; value: string }[];
+  tags: string[];
+  link: string;
+  linkLabel: string;
 }
 
-export const HERO_METRICS: HeroMetric[] = [
+export const WORKSPACE_TABS: WorkspaceTab[] = [
   {
-    value: "2020+",
-    label: "Anos no ecossistema Java & Web",
-    detail: "Base sólida em engenharia de software",
+    id: "semfaz-pix",
+    fileName: "semfaz-pix-engine.java",
+    folder: "gov-arrecadacao",
+    path: "workspace / gov-arrecadacao / semfaz-pix-engine.java",
+    language: "Java / Spring Boot",
+    statusLabel: "PRODUÇÃO • SEMFAZ",
+    title: "Liquidação Tributária Instantânea via PIX",
+    summary:
+      "Engenharia, implantação e sustentação da liquidação financeira via PIX para toda a matriz de tributos municipais de Aracaju (IPTU, ITBI, ISS, TLF, certidões e taxas), com barramentos de integração governamentais.",
+    architectureLines: [
+      { label: "tributos", value: "IPTU • ITBI • ISS • TLF • Certidões" },
+      {
+        label: "barramentos",
+        value: "REDESIM, GOV.BR, SEFAZ, 1Doc, Correios",
+      },
+      {
+        label: "core_stack",
+        value: "Java, Spring Boot, Oracle DB, JasperReports",
+      },
+      { label: "pipeline", value: "TestNG, JaCoCo, Jenkins CI/CD" },
+    ],
+    metrics: [
+      { label: "Liquidação", value: "Tempo real" },
+      { label: "Integrações", value: "10+ órgãos" },
+      { label: "Criticidade", value: "Fiscal / Gov" },
+    ],
+    tags: ["Java", "Spring Boot", "Oracle DB", "Microsserviços", "Jenkins"],
+    link: "https://www.linkedin.com/in/matheus-araujo-pereira",
+    linkLabel: "Ver histórico completo",
   },
   {
-    value: "PIX & Gov",
-    label: "Liquidação tributária em tempo real",
-    detail: "Missão crítica na SEMFAZ Aracaju",
+    id: "sigea-ufs",
+    fileName: "sigea-ufs-platform.ts",
+    folder: "pesquisa-ufs",
+    path: "workspace / pesquisa-ufs / sigea-ufs-platform.ts",
+    language: "Full Stack / IHI-GTT",
+    statusLabel: "QUALITY GATE 100%",
+    title: "SIGEA — Gestão de Eventos Adversos (UFS)",
+    summary:
+      "Plataforma clínica e educacional interdisciplinar (DCOMP e Enfermagem/UFS) baseada na metodologia IHI-GTT (6 módulos, 53 gatilhos) e classificação NCC MERP com dashboards epidemiológicos.",
+    architectureLines: [
+      { label: "backend", value: "Java 21 + Spring Boot 3.3 + JWT/RBAC" },
+      { label: "database", value: "PostgreSQL 16 com documentos JSONB" },
+      {
+        label: "qualidade",
+        value: "Ishikawa 6M, PDCA, GUT, SWOT e 5W2H",
+      },
+      { label: "cobertura", value: "100% Quality Gate validado via JaCoCo" },
+    ],
+    metrics: [
+      { label: "Gatilhos", value: "53 IHI-GTT" },
+      { label: "Cobertura", value: "100% JaCoCo" },
+      { label: "Frontend", value: "Angular 18+" },
+    ],
+    tags: ["Java 21", "Spring Boot 3.3", "PostgreSQL 16", "Angular 18"],
+    link: "https://github.com/matheus-araujo-pereira/SIGEA",
+    linkLabel: "Abrir repositório",
   },
   {
-    value: "5.0 ★",
-    label: "Avaliação em entregas freelance",
-    detail: "Compromisso com prazo e acabamento",
-  },
-  {
-    value: "100%",
-    label: "Foco em qualidade, testes e arquitetura",
-    detail: "Quality gates, CI/CD e código limpo",
+    id: "thomas-clay",
+    fileName: "thomas-clay-system.fig",
+    folder: "design-systems",
+    path: "workspace / design-systems / thomas-clay-system.fig",
+    language: "UI/UX / Design System",
+    statusLabel: "AVALIAÇÃO 5,0 ★",
+    title: "Thomas Clay — Catálogo Web & Guia de Marca",
+    summary:
+      "Entrega completa de direção visual e produto digital: identidade visual, biblioteca modular de componentes no Figma, protótipo web responsivo com filtros dinâmicos e Guia Editorial de 7 pranchas A4.",
+    architectureLines: [
+      { label: "escopo", value: "6 páginas + filtros dinâmicos + medidas" },
+      {
+        label: "design_sys",
+        value: "Tokens, tipografia e componentes Figma",
+      },
+      { label: "editorial", value: "Guia Prático de Uso em 7 pranchas A4" },
+      { label: "entrega", value: "Prazo antecipado • Nota 5,0 no 99Freelas" },
+    ],
+    metrics: [
+      { label: "Avaliação", value: "5,0 ★" },
+      { label: "Guia Editorial", value: "7 pranchas A4" },
+      { label: "Deploy", value: "Vercel" },
+    ],
+    tags: ["Figma", "Design System", "HTML5/CSS3/JS", "UI/UX"],
+    link: "https://thomas-clay-design.vercel.app/",
+    linkLabel: "Abrir protótipo publicado",
   },
 ];
 
-export type ServiceIconName = "server" | "globe" | "shopping-bag" | "palette";
+export type ServiceTone = "dark" | "paper" | "muted" | "accent";
 
 export interface ServiceItem {
+  number: string;
   id: string;
   title: string;
-  subtitle: string;
   description: string;
+  deliverables: string[];
   stack: string[];
-  icon: ServiceIconName;
+  tone: ServiceTone;
   whatsappMessage: string;
 }
 
 export const SERVICES: ServiceItem[] = [
   {
+    number: "01",
     id: "sistemas-web",
     title: "Sistemas Web Full Stack & APIs Corporativas",
-    subtitle: "Arquitetura robusta & regras de negócio",
     description:
-      "Desenvolvimento de plataformas completas, painéis administrativos, controle de acesso por perfis (RBAC/JWT), regras de negócio complexas, relatórios gerenciais e integração com bancos relacionais.",
+      "Arquitetura e desenvolvimento de plataformas robustas sob medida para operações com regras de negócio exigentes, controle de acesso granular e integração com bancos corporativos.",
+    deliverables: [
+      "APIs RESTful seguras com autenticação JWT e perfis RBAC",
+      "Painéis administrativos, relatórios gerenciais e fluxos assíncronos",
+      "Modelagem relacional, tuning de consultas e testes automatizados",
+    ],
     stack: [
       "Java",
       "Spring Boot",
       "Angular",
-      "React/Next.js",
+      "Next.js",
       "PostgreSQL",
-      "MySQL",
-      "Oracle",
+      "Oracle DB",
+      "RBAC/JWT",
     ],
-    icon: "server",
+    tone: "dark",
     whatsappMessage:
       "Olá, Matheus! Vi sua Carta de Serviços e gostaria de solicitar uma proposta para Sistemas Web Full Stack & APIs Corporativas.",
   },
   {
-    id: "landing-pages",
-    title: "Landing Pages & Sites Institucionais de Alta Conversão",
-    subtitle: "Performance, SEO técnico & captação",
+    number: "02",
+    id: "sites-landing",
+    title: "Sites Institucionais & Landing Pages Sob Medida",
     description:
-      "Criação de páginas rápidas, responsivas e sob medida para empresas, clínicas, escritórios e lançamentos, com foco em SEO técnico, performance e captação de clientes via WhatsApp.",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "UI/UX Design", "SEO"],
-    icon: "globe",
+      "Interfaces autorais, rápidas e responsivas projetadas para empresas, clínicas, escritórios e especialistas que exigem presença digital diferenciada e alta conversão.",
+    deliverables: [
+      "Design autoral sem templates genéricos, alinhado à identidade da marca",
+      "SEO técnico completo, OpenGraph e performance otimizada em produção",
+      "Fluxos diretos de captação via WhatsApp e formulários qualificados",
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "UI/UX Autoral", "SEO"],
+    tone: "paper",
     whatsappMessage:
-      "Olá, Matheus! Vi sua Carta de Serviços e gostaria de solicitar uma proposta para Landing Pages & Sites Institucionais de Alta Conversão.",
+      "Olá, Matheus! Vi sua Carta de Serviços e gostaria de solicitar uma proposta para Sites Institucionais & Landing Pages Sob Medida.",
   },
   {
-    id: "lojas-virtuais",
+    number: "03",
+    id: "lojas-plataformas",
     title: "Lojas Virtuais, Catálogos & Plataformas Digitais",
-    subtitle: "Checkout integrado & gestão autônoma",
     description:
-      "E-commerces para produtos físicos ou digitais (PDFs, infoprodutos, assinaturas) com checkout integrado (Pix e Cartão), área restrita do cliente e painel autônomo para gestão sem depender de programação.",
+      "E-commerces e plataformas para produtos físicos ou digitais com experiência de compra fluida, entrega segura de arquivos e autonomia operacional para sua equipe.",
+    deliverables: [
+      "Checkout integrado com Pix e Cartão via gateways confiáveis",
+      "Área restrita do cliente e entrega protegida de arquivos digitais",
+      "Painel administrativo autônomo para gestão sem depender de código",
+    ],
     stack: [
       "Next.js",
       "PostgreSQL",
+      "Checkout Pix/Cartão",
       "Storage Privado",
-      "Gateways de Pagamento",
     ],
-    icon: "shopping-bag",
+    tone: "muted",
     whatsappMessage:
       "Olá, Matheus! Vi sua Carta de Serviços e gostaria de solicitar uma proposta para Lojas Virtuais, Catálogos & Plataformas Digitais.",
   },
   {
-    id: "ui-ux-diagramacao",
-    title: "UI/UX Design, Identidade Visual & Diagramação Técnica",
-    subtitle: "Design systems & rigor editorial",
+    number: "04",
+    id: "design-diagramacao",
+    title: "UI/UX Design, Identidade Visual & Diagramação ABNT",
     description:
-      "Protótipos navegáveis no Figma, design systems, identidade visual para marcas/startups e diagramação rigorosa de documentos acadêmicos e técnicos nas normas da ABNT e LaTeX.",
-    stack: ["Figma", "Design Systems", "LaTeX / abnTeX2", "GIMP"],
-    icon: "palette",
+      "Direção visual estratégica para produtos digitais e marcas, combinada ao rigor tipográfico para documentos técnicos, científicos e editoriais complexos.",
+    deliverables: [
+      "Protótipos navegáveis e bibliotecas de componentes (Design Systems) no Figma",
+      "Identidade visual consistente e manuais editoriais de aplicação de marca",
+      "Diagramação técnica e acadêmica nas normas ABNT com LaTeX / abnTeX2",
+    ],
+    stack: [
+      "Figma",
+      "Design Systems",
+      "Identidade Visual",
+      "LaTeX / abnTeX2",
+      "GIMP",
+    ],
+    tone: "accent",
     whatsappMessage:
-      "Olá, Matheus! Vi sua Carta de Serviços e gostaria de solicitar uma proposta para UI/UX Design, Identidade Visual & Diagramação Técnica.",
+      "Olá, Matheus! Vi sua Carta de Serviços e gostaria de solicitar uma proposta para UI/UX Design, Identidade Visual & Diagramação ABNT.",
   },
 ];
 
 export interface ProjectItem {
   id: string;
-  category: string;
-  highlightBadge: string;
+  windowLabel: string;
+  year: string;
+  metricBadge: string;
   title: string;
-  description: string;
+  problemSolved: string;
   tags: string[];
   link: string;
   linkLabel: string;
-  accent: "blue" | "emerald";
 }
 
 export const PROJECTS: ProjectItem[] = [
   {
     id: "sigea",
-    category: "Engenharia de Software • Saúde & Pesquisa",
-    highlightBadge: "100% Cobertura de Testes",
+    windowLabel: "github.com / matheus-araujo-pereira / SIGEA",
+    year: "2025 – 2026",
+    metricBadge: "100% Cobertura JaCoCo",
     title: "SIGEA — Sistema Inteligente de Gestão de Eventos Adversos (UFS)",
-    description:
-      "Plataforma educacional e clínica interdisciplinar (DCOMP e Enfermagem/UFS) baseada na metodologia IHI-GTT (6 módulos e 53 gatilhos), classificação NCC MERP, ferramentas de qualidade hospitalar (Ishikawa 6M, PDCA, GUT, SWOT, 5W2H), dashboards epidemiológicos e Quality Gate de 100% de cobertura de testes.",
+    problemSolved:
+      "Unifica o rastreamento clínico e educacional de eventos adversos hospitalares (DCOMP e Enfermagem/UFS) sob a metodologia IHI-GTT (6 módulos e 53 gatilhos) e classificação NCC MERP, integrando ferramentas de qualidade (Ishikawa 6M, PDCA, GUT, SWOT, 5W2H), dashboards epidemiológicos e Quality Gate de 100% de cobertura de testes.",
     tags: [
       "Java 21",
       "Spring Boot 3.3",
@@ -173,28 +275,28 @@ export const PROJECTS: ProjectItem[] = [
     ],
     link: "https://github.com/matheus-araujo-pereira/SIGEA",
     linkLabel: "Ver repositório no GitHub",
-    accent: "blue",
   },
   {
     id: "thomas-clay",
-    category: "UI/UX Design & Front-end • Freelance",
-    highlightBadge: "Avaliação 5,0 ★",
+    windowLabel: "thomas-clay-design.vercel.app",
+    year: "2026",
+    metricBadge: "Nota 5,0 ★ • 99Freelas",
     title: "Thomas Clay — Catálogo Web, Design System & Guia de Marca",
-    description:
-      "Projeto completo entregue com avaliação 5,0: arquitetura de identidade visual, design system no Figma, protótipo web responsivo com filtros dinâmicos e tabela de medidas, além de Guia Editorial de Uso em 7 pranchas A4.",
+    problemSolved:
+      "Estruturou toda a presença digital da marca de vestuário a partir de um briefing de seis páginas: identidade visual, biblioteca modular de componentes no Figma, protótipo web responsivo com filtros dinâmicos e tabela de medidas, além de um Guia Editorial de Uso em 7 pranchas A4 — entregue antes do prazo.",
     tags: ["UI/UX Design", "Figma", "HTML5/CSS3/JS", "Design System", "Vercel"],
     link: "https://thomas-clay-design.vercel.app/",
-    linkLabel: "Abrir projeto publicado",
-    accent: "emerald",
+    linkLabel: "Abrir protótipo publicado",
   },
   {
     id: "semfaz-pix",
-    category: "Sistemas Governamentais • Alta Criticidade",
-    highlightBadge: "Produção em Larga Escala",
+    windowLabel: "semfaz.aracaju.se.gov.br / arrecadacao-pix",
+    year: "2023 – Atual",
+    metricBadge: "Produção Governamental",
     title:
       "Arrecadação Tributária via PIX & Integrações Governamentais (SEMFAZ Aracaju)",
-    description:
-      "Participação ativa na engenharia, implantação e sustentação da liquidação financeira instantânea via PIX para a totalidade dos tributos municipais de Aracaju (IPTU, ITBI, ISS, taxas e certidões) e barramentos de integração (REDESIM, GOV.BR, SEFAZ, 1Doc, Correios).",
+    problemSolved:
+      "Eliminou a latência de compensação bancária tradicional através da engenharia e sustentação da liquidação instantânea via PIX para a totalidade dos tributos municipais de Aracaju (IPTU, ITBI, ISS, taxas e certidões), além de barramentos de integração com REDESIM, GOV.BR, SEFAZ, 1Doc e Correios.",
     tags: [
       "Java",
       "Spring Boot",
@@ -204,205 +306,202 @@ export const PROJECTS: ProjectItem[] = [
       "Jenkins",
     ],
     link: "https://www.linkedin.com/in/matheus-araujo-pereira",
-    linkLabel: "Ver histórico no LinkedIn",
-    accent: "blue",
+    linkLabel: "Ver trajetória no LinkedIn",
   },
   {
     id: "diagramacao-latex",
-    category: "Engenharia Documental • ABNT & LaTeX",
-    highlightBadge: "Rigor Tipográfico ABNT",
+    windowLabel: "docs / projeto_departamental.pdf",
+    year: "2025",
+    metricBadge: "Normas ABNT / LaTeX",
     title: "Diagramação Editorial & Engenharia Documental (ABNT / LaTeX)",
-    description:
-      "Estruturação de documentação técnica e científica de alta complexidade com geração automatizada de sumários, tabelas, diagramas de Gantt, normas ABNT e rigor tipográfico.",
-    tags: ["LaTeX", "abnTeX2", "Normas ABNT", "Documentação Técnica"],
+    problemSolved:
+      "Sistematizou documentação técnica e científica de alta complexidade com geração automatizada de sumários, referências, tabelas, cronogramas de Gantt e rigor tipográfico em conformidade integral com as normas ABNT via abnTeX2.",
+    tags: ["LaTeX", "abnTeX2", "Normas ABNT", "Engenharia Documental"],
     link: "https://github.com/matheus-araujo-pereira/SIGEA/blob/main/projeto_departamental/projeto_departamental.pdf",
-    linkLabel: "Visualizar documento PDF",
-    accent: "emerald",
+    linkLabel: "Visualizar PDF técnico",
+  },
+];
+
+export const TESTIMONIAL = {
+  quote:
+    "Contratei o Matheus para desenhar o site de catálogo da minha marca de vestuário, com briefing detalhado e seis páginas. Ele entregou antes do prazo que eu tinha estabelecido e antecipou o cronograma. Ouviu cada alteração que pedi e aplicou tudo prontamente, demonstrando entendimento perfeito. A comunicação foi clara do começo ao fim, e o Figma veio como pedi: biblioteca de componentes e um guia prático para uso no dia a dia.",
+  author: "Márcio R.",
+  role: "Fundador, Thomas Clay (Avaliação 5,0 ★ no 99Freelas)",
+  projectUrl: "https://thomas-clay-design.vercel.app/",
+} as const;
+
+export interface StackTile {
+  code: string;
+  name: string;
+  category: string;
+}
+
+export const STACK_TILES: StackTile[] = [
+  { code: "JV", name: "Java 21", category: "Core Backend" },
+  { code: "SB", name: "Spring Boot", category: "APIs & Security" },
+  { code: "NG", name: "Angular", category: "Enterprise UI" },
+  { code: "NX", name: "Next.js", category: "Web & SSR" },
+  { code: "TS", name: "TypeScript", category: "Type-Safe" },
+  { code: "PG", name: "PostgreSQL", category: "SQL & JSONB" },
+  { code: "OR", name: "Oracle DB", category: "Tuning Fiscal" },
+  { code: "MY", name: "MySQL", category: "Relacional" },
+  { code: "DK", name: "Docker", category: "Containers" },
+  { code: "JK", name: "Jenkins", category: "CI / CD" },
+  { code: "FG", name: "Figma", category: "Design System" },
+  { code: "FD", name: "Linux Fedora", category: "Ambiente" },
+];
+
+export const COMPLEMENTARY_TECH = [
+  "Java 8 / 11 / 17 / 21",
+  "Spring Data JPA",
+  "Spring Security",
+  "JUnit 4/5",
+  "TestNG",
+  "JaCoCo",
+  "JasperReports",
+  "Tailwind CSS",
+  "Git & GitHub",
+  "UML",
+  "Scrum / Kanban",
+  "LaTeX / abnTeX2",
+] as const;
+
+export interface ProcessStep {
+  number: string;
+  title: string;
+  summary: string;
+  details: string;
+  outputs: string[];
+}
+
+export const PROCESS_STEPS: ProcessStep[] = [
+  {
+    number: "01",
+    title: "Levantamento Técnico & Arquitetura",
+    summary: "Clareza de negócio, riscos e modelagem antes da primeira linha de código.",
+    details:
+      "Mapeio requisitos funcionais e não funcionais, regras críticas de domínio, integrações externas e modelagem de dados. O escopo sai documentado com cronograma realista, arquitetura definida e critérios objetivos de aceite.",
+    outputs: [
+      "Especificação funcional e arquitetura de sistema",
+      "Modelagem relacional e contratos de API",
+      "Cronograma transparente por entregas",
+    ],
+  },
+  {
+    number: "02",
+    title: "Protótipo Navegável & Direção Visual",
+    summary: "Interface validada visualmente antes de investir horas de engenharia.",
+    details:
+      "Construo a direção de arte, fluxos de navegação e biblioteca de componentes no Figma com foco em legibilidade, hierarquia editorial e conversão — garantindo alinhamento completo antes da implementação.",
+    outputs: [
+      "Design System e componentes reutilizáveis no Figma",
+      "Protótipo navegável desktop e mobile",
+      "Revisões rápidas com comunicação direta",
+    ],
+  },
+  {
+    number: "03",
+    title: "Desenvolvimento Full Stack & Testes Automatizados",
+    summary: "Código limpo, tipagem estrita e qualidade verificada em pipeline.",
+    details:
+      "Implemento backend, banco de dados e frontend com padrões de arquitetura sustentável, controle de acesso seguro (JWT/RBAC), suítes de testes automatizados (JUnit, TestNG, JaCoCo) e validação contínua de performance.",
+    outputs: [
+      "Entregas parciais demonstráveis em ambiente de homologação",
+      "Testes automatizados e revisão de consultas SQL",
+      "SEO técnico, acessibilidade e responsividade completa",
+    ],
+  },
+  {
+    number: "04",
+    title: "Publicação, Documentação & Suporte Pós-Entrega",
+    summary: "Deploy assistido em produção e autonomia para a sua equipe evoluir.",
+    details:
+      "Realizo a publicação em produção (Vercel, Docker ou infraestrutura corporativa), entrego documentação técnica objetiva e guias práticos de uso, além de acompanhamento próximo após o lançamento.",
+    outputs: [
+      "Deploy configurado com domínio, SSL e metadados sociais",
+      "Documentação técnica e guia operacional de uso",
+      "Acompanhamento pós-go-live e evolução contínua",
+    ],
   },
 ];
 
 export interface ExperienceItem {
   id: string;
-  role: string;
   period: string;
   current?: boolean;
+  role: string;
   organization: string;
   location: string;
-  summary: string;
-  deliverables: string[];
+  highlights: string[];
 }
 
 export const EXPERIENCES: ExperienceItem[] = [
   {
     id: "lider-semfaz",
-    role: "Analista de Redes Júnior (Atuação como Engenheiro de Software)",
     period: "2026 – Atual",
     current: true,
+    role: "Analista de Redes Júnior (Atuação como Engenheiro de Software)",
     organization:
-      "Líder Locação de Mão de Obra LTDA | Alocado na Secretaria Municipal da Fazenda (SEMFAZ)",
+      "Líder Locação de Mão de Obra LTDA | Alocado na SEMFAZ Aracaju",
     location: "Aracaju, SE",
-    summary:
-      "Atuação na evolução arquitetural e regras fiscais críticas dos sistemas arrecadatórios municipais.",
-    deliverables: [
+    highlights: [
       "Levantamento técnico e definição de regras de negócio em sistemas arrecadatórios críticos (IPTU e ITBI).",
       "Arquitetura de serviços assíncronos e emissão de demonstrativos fiscais via JasperSoft.",
-      "Modelagem relacional, elaboração de diagramas UML e homologação contínua via Jenkins.",
-      "Mentoria técnica de estagiários e condução de entregas em cerimônias ágeis.",
+      "Modelagem relacional, diagramas UML, homologação via Jenkins, mentoria técnica de estagiários e cerimônias ágeis.",
     ],
   },
   {
     id: "inovatec-semfaz",
-    role: "Programador de Sistemas de Computador Júnior",
     period: "2025 – 2026",
-    organization:
-      "Agência de Inovação Tecnológica de João Pessoa (InovatecJP) | Alocado na SEMFAZ",
+    role: "Programador de Sistemas de Computador Júnior",
+    organization: "InovatecJP | Alocado na SEMFAZ Aracaju",
     location: "Aracaju, SE",
-    summary:
-      "Engenharia de integrações governamentais, desenvolvimento full stack e performance de bancos relacionais.",
-    deliverables: [
+    highlights: [
       "Implementação de barramentos de integração e suítes de testes para órgãos externos (REDESIM, STM, ITBI, IPTU, SEFAZ, GOV.BR, 1Doc, Asterisk, PAFE, MAPAJU e Correios).",
-      "Treinamento técnico de estagiários posteriormente efetivados no time.",
-      "Desenvolvimento full stack em Java, Spring Boot e Angular/TypeScript.",
-      "Otimização de consultas e estruturas em Oracle DB, PostgreSQL e MySQL.",
+      "Desenvolvimento full stack em Java, Spring Boot e Angular/TypeScript, com treinamento técnico de estagiários efetivados.",
+      "Otimização de queries e modelagem em Oracle DB, PostgreSQL e MySQL.",
     ],
   },
   {
     id: "estagio-semfaz",
-    role: "Estagiário de Desenvolvimento de Software",
     period: "2023 – 2025",
+    role: "Estagiário de Desenvolvimento de Software",
     organization: "Secretaria Municipal da Fazenda de Aracaju (SEMFAZ)",
     location: "Aracaju, SE",
-    summary:
-      "Modernização digital da fazenda municipal e implantação da liquidação tributária em tempo real.",
-    deliverables: [
+    highlights: [
       "Concepção e implantação da liquidação financeira em tempo real via PIX para todos os tributos municipais (IPTU, ITBI, ISS, TLF, certidões e taxas).",
       "Modernização de sistemas legados de atendimento e requerimentos digitais.",
-      "Construção de suítes de testes automatizados com TestNG e análise de cobertura com JaCoCo.",
+      "Testes automatizados com TestNG e métricas de cobertura com JaCoCo.",
     ],
   },
   {
     id: "softeam",
-    role: "Diretor de Tecnologia & Engenheiro de Software",
     period: "2022 – 2025",
-    organization: "SOFTEAM – Empresa Júnior de Computação (UFS)",
+    role: "Diretor de Tecnologia & Engenheiro de Software",
+    organization:
+      "SOFTEAM (Empresa Júnior de Computação – UFS, Prêmio EJ Foguete)",
     location: "São Cristóvão, SE",
-    summary:
-      "Gestão tecnológica, formação de novos engenheiros e entregas premiadas nacionalmente.",
-    deliverables: [
-      "Liderança da diretoria de tecnologia com definição de padrões de arquitetura e qualidade.",
-      "Capacitação técnica full stack de membros em Java, Spring Boot, PostgreSQL e Angular.",
+    highlights: [
+      "Liderança da diretoria de tecnologia e capacitação full stack em Java, Spring Boot, PostgreSQL e Angular.",
       "Desenvolvimento de sistemas em Java 17 e portais institucionais, culminando na premiação nacional \"EJ Foguete\" do Movimento Empresa Júnior.",
     ],
   },
 ];
 
-export type StackIconName = "code" | "layers" | "database" | "shield";
-
-export interface StackCategory {
-  id: string;
-  title: string;
-  icon: StackIconName;
-  items: string[];
-}
-
-export const STACK_CATEGORIES: StackCategory[] = [
+export const EDUCATION_SUMMARY = [
   {
-    id: "backend",
-    title: "Backend & Arquitetura",
-    icon: "code",
-    items: [
-      "Java (8, 11, 17, 21)",
-      "Spring Boot (2.x e 3.x)",
-      "Spring Data JPA",
-      "Spring Security",
-      "APIs RESTful",
-      "Microsserviços",
-      "JasperReports",
-    ],
-  },
-  {
-    id: "frontend",
-    title: "Frontend & Design",
-    icon: "layers",
-    items: [
-      "Angular (7+ a 18+)",
-      "React",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
-      "HTML5",
-      "CSS3",
-      "Tailwind CSS",
-      "Bootstrap",
-      "Figma",
-    ],
-  },
-  {
-    id: "database",
-    title: "Bancos de Dados",
-    icon: "database",
-    items: [
-      "PostgreSQL",
-      "Oracle Database",
-      "MySQL",
-      "Modelagem relacional",
-      "Indexação & Tuning",
-      "JSONB",
-    ],
-  },
-  {
-    id: "devops",
-    title: "Qualidade, DevOps & Métodos",
-    icon: "shield",
-    items: [
-      "JUnit 4/5",
-      "TestNG",
-      "JaCoCo",
-      "Jenkins (CI/CD)",
-      "Git",
-      "GitHub",
-      "Docker",
-      "Linux (Fedora)",
-      "UML",
-      "Scrum / Kanban",
-    ],
-  },
-];
-
-export interface EducationItem {
-  id: string;
-  degree: string;
-  institution: string;
-  period: string;
-  status: string;
-}
-
-export const EDUCATION: EducationItem[] = [
-  {
-    id: "mestrado-ufs",
-    degree: "Mestrado em Ciência da Computação (M.Sc.)",
-    institution: "Universidade Federal de Sergipe (UFS)",
     period: "2026 – Atual",
-    status: "Em andamento",
-  },
-  {
-    id: "graduacao-ufs",
-    degree: "Bacharelado em Engenharia de Computação",
+    title: "Mestrado em Ciência da Computação (M.Sc.)",
     institution: "Universidade Federal de Sergipe (UFS)",
-    period: "2022 – 2027 (Previsão)",
-    status: "Em andamento",
-  },
-];
-
-export const LANGUAGES = [
-  {
-    language: "Português",
-    level: "Nativo",
-    detail: "Comunicação técnica, corporativa e redação científica (ABNT)",
   },
   {
-    language: "Inglês",
-    level: "Intermediário",
-    detail: "Wizard: módulos W2, W4 e W6 concluídos; cursando W8",
+    period: "2022 – 2027",
+    title: "Bacharelado em Engenharia de Computação",
+    institution: "Universidade Federal de Sergipe (UFS)",
+  },
+  {
+    period: "Idiomas",
+    title: "Português Nativo • Inglês Intermediário",
+    institution: "Wizard — módulos W2, W4 e W6 concluídos; cursando W8",
   },
 ] as const;

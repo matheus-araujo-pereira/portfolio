@@ -38,3 +38,27 @@ export function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function Freelas99Icon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      {...props}
+    >
+      <text
+        x="12"
+        y="16.5"
+        textAnchor="middle"
+        fill="currentColor"
+        fontSize="13.5"
+        fontWeight="700"
+        fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+        letterSpacing="-0.5"
+      >
+        99
+      </text>
+    </svg>
+  );
+}
