@@ -11,14 +11,14 @@ export function ExperienceSection() {
   return (
     <section
       id="trajetoria"
-      className="border-b border-[#E4E4E7] bg-[#FFFFFF] py-16 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#09090B]"
+      className="border-b border-[#E4E4E7] bg-[#FFFFFF] py-14 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#09090B]"
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="font-mono text-xs font-medium tracking-wider text-[#1D4ED8] uppercase dark:text-[#3B82F6]">
             {experienceSection.eyebrow}
           </p>
-          <h2 className="mt-2.5 text-3xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
+          <h2 className="mt-2.5 text-2xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
             {experienceSection.title}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[#52525B] dark:text-[#A1A1AA]">
@@ -26,28 +26,28 @@ export function ExperienceSection() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 items-start gap-10 lg:mt-12 lg:grid-cols-12">
+        <div className="mt-10 grid grid-cols-1 items-start gap-8 lg:mt-12 lg:grid-cols-12 lg:gap-10">
           {/* Left 8 Cols: Clean Vertical Timeline with Blue Markers */}
-          <div className="relative lg:col-span-8">
+          <div className="relative min-w-0 lg:col-span-8">
             <div
               aria-hidden="true"
-              className="absolute top-3 bottom-3 left-2.5 w-px bg-[#E4E4E7] dark:bg-[#27272A]"
+              className="absolute top-3 bottom-3 left-2 w-px bg-[#E4E4E7] sm:left-2.5 dark:bg-[#27272A]"
             />
 
-            <ol className="space-y-6">
+            <ol className="space-y-5 sm:space-y-6">
               {experienceSection.items.map((exp) => (
-                <li key={exp.id} className="relative pl-9">
+                <li key={exp.id} className="relative pl-7 sm:pl-9">
                   {/* Blue Timeline Marker */}
                   <span
                     aria-hidden="true"
-                    className={`absolute top-6 left-1 h-3 w-3 rounded-full ring-4 ring-[#FFFFFF] dark:ring-[#09090B] ${
+                    className={`absolute top-6 left-0.5 h-3 w-3 rounded-full ring-4 ring-[#FFFFFF] sm:left-1 dark:ring-[#09090B] ${
                       exp.current
                         ? "bg-[#1D4ED8] dark:bg-[#3B82F6]"
                         : "border-2 border-[#1D4ED8] bg-[#FFFFFF] dark:border-[#3B82F6] dark:bg-[#09090B]"
                     }`}
                   />
 
-                  <article className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-6 dark:border-[#27272A] dark:bg-[#111114]">
+                  <article className="min-w-0 rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-5 sm:p-6 dark:border-[#27272A] dark:bg-[#111114]">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="font-mono text-xs font-medium text-[#52525B] dark:text-[#A1A1AA]">
@@ -95,9 +95,9 @@ export function ExperienceSection() {
           </div>
 
           {/* Right 4 Cols: Academic Education & Languages Cards */}
-          <div className="space-y-6 lg:col-span-4">
+          <div className="min-w-0 space-y-5 sm:space-y-6 lg:col-span-4">
             {/* Education Card */}
-            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-6 dark:border-[#27272A] dark:bg-[#111114]">
+            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-5 sm:p-6 dark:border-[#27272A] dark:bg-[#111114]">
               <div className="flex items-center gap-2.5">
                 <GraduationCap
                   className="h-5 w-5 text-[#1D4ED8] dark:text-[#3B82F6]"
@@ -132,7 +132,7 @@ export function ExperienceSection() {
             </div>
 
             {/* Languages Card */}
-            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-6 dark:border-[#27272A] dark:bg-[#111114]">
+            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-5 sm:p-6 dark:border-[#27272A] dark:bg-[#111114]">
               <div className="flex items-center gap-2.5">
                 <Languages
                   className="h-5 w-5 text-[#1D4ED8] dark:text-[#3B82F6]"
@@ -149,7 +149,7 @@ export function ExperienceSection() {
                     key={lang.name}
                     className="rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] p-4 dark:border-[#27272A] dark:bg-[#09090B]"
                   >
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
                       <h4 className="text-sm font-bold text-[#09090B] dark:text-[#FAFAFA]">
                         {lang.name}
                       </h4>

@@ -127,7 +127,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: initScript }} />
       </head>
-      <body className="min-h-full flex flex-col bg-[#FFFFFF] text-[#09090B] dark:bg-[#09090B] dark:text-[#FAFAFA]">
+      <body className="min-h-full flex flex-col overflow-x-clip bg-[#FFFFFF] text-[#09090B] dark:bg-[#09090B] dark:text-[#FAFAFA]">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

@@ -70,13 +70,13 @@ export function CopyEmailButton({
         type="button"
         onClick={handleCopy}
         aria-live="polite"
-        className={`group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] dark:focus-visible:outline-[#3B82F6] ${
+        className={`group flex min-h-11 w-full items-center justify-between gap-2.5 rounded-xl border px-3.5 py-3 text-left transition-colors sm:gap-3 sm:px-4 sm:py-3.5 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] dark:focus-visible:outline-[#3B82F6] ${
           copied
             ? "border-[#BFDBFE] bg-[#EFF6FF] text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]"
             : "border-[#E4E4E7] bg-[#FFFFFF] text-[#09090B] hover:border-[#1D4ED8] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6]"
         } ${className}`}
       >
-        <span className="flex min-w-0 items-center gap-3">
+        <span className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           {copied ? (
             <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
           ) : (
@@ -89,7 +89,7 @@ export function CopyEmailButton({
             <span className="block text-xs text-[#52525B] dark:text-[#A1A1AA]">
               {content.footer.copyEmailPrompt}
             </span>
-            <span className="block truncate font-mono text-sm font-medium">
+            <span className="block truncate font-mono text-xs font-medium sm:text-sm">
               {PROFILE.email}
             </span>
           </span>
@@ -124,7 +124,7 @@ export function CopyEmailButton({
       onClick={handleCopy}
       aria-live="polite"
       title={PROFILE.email}
-      className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] dark:focus-visible:outline-[#3B82F6] ${
+      className={`inline-flex min-h-10 items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] dark:focus-visible:outline-[#3B82F6] ${
         copied
           ? "border-[#BFDBFE] bg-[#EFF6FF] text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]"
           : "border-[#E4E4E7] bg-[#FFFFFF] text-[#52525B] hover:border-[#1D4ED8] hover:text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#A1A1AA] dark:hover:border-[#3B82F6] dark:hover:text-[#FAFAFA]"

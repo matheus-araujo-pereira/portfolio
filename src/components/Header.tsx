@@ -50,17 +50,17 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#E4E4E7] bg-[#FFFFFF]/92 backdrop-blur-md transition-colors dark:border-[#27272A] dark:bg-[#09090B]/92">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <a
           href="#inicio"
           onClick={closeMenu}
-          className="flex items-center gap-2 text-base font-bold tracking-tight text-[#09090B] transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1D4ED8] dark:text-[#FAFAFA] dark:focus-visible:outline-[#3B82F6]"
+          className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-bold tracking-tight text-[#09090B] transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1D4ED8] sm:gap-2 sm:text-base dark:text-[#FAFAFA] dark:focus-visible:outline-[#3B82F6]"
         >
           <span>{PROFILE.shortName}</span>
           <span
             aria-hidden="true"
-            className="h-1.5 w-1.5 rounded-full bg-[#1D4ED8] dark:bg-[#3B82F6]"
+            className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1D4ED8] dark:bg-[#3B82F6]"
           />
         </a>
 
@@ -88,7 +88,7 @@ export function Header() {
         </nav>
 
         {/* Right Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LanguageToggle />
           <ThemeToggle />
 
@@ -126,7 +126,7 @@ export function Header() {
       {mobileMenuOpen && (
         <div
           id="mobile-nav"
-          className="border-t border-[#E4E4E7] bg-[#FFFFFF] px-5 pt-3 pb-5 lg:hidden dark:border-[#27272A] dark:bg-[#09090B]"
+          className="border-t border-[#E4E4E7] bg-[#FFFFFF] px-4 pt-3 pb-5 sm:px-6 lg:hidden dark:border-[#27272A] dark:bg-[#09090B]"
         >
           <nav
             aria-label={
@@ -139,7 +139,7 @@ export function Header() {
                 key={item.id}
                 href={item.href}
                 onClick={closeMenu}
-                className="border-b border-[#E4E4E7] py-3 text-sm font-medium text-[#09090B] transition-colors hover:text-[#1D4ED8] dark:border-[#27272A] dark:text-[#FAFAFA] dark:hover:text-[#3B82F6]"
+                className="flex min-h-11 items-center border-b border-[#E4E4E7] text-sm font-medium text-[#09090B] transition-colors hover:text-[#1D4ED8] dark:border-[#27272A] dark:text-[#FAFAFA] dark:hover:text-[#3B82F6]"
               >
                 {item.label}
               </a>
@@ -152,7 +152,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
-              className="inline-flex w-full items-center justify-center rounded-lg bg-[#1D4ED8] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1E40AF] dark:bg-[#3B82F6] dark:hover:bg-[#60A5FA]"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-[#1D4ED8] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1E40AF] dark:bg-[#3B82F6] dark:hover:bg-[#60A5FA]"
             >
               {content.hero.primaryCta}
             </a>
@@ -160,7 +160,7 @@ export function Header() {
               href={PROFILE.resumePath}
               download
               onClick={closeMenu}
-              className="inline-flex w-full items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] px-4 py-2.5 text-sm font-medium text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA]"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] px-4 py-2.5 text-sm font-medium text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA]"
             >
               {content.hero.secondaryCta}
             </a>

@@ -11,14 +11,14 @@ export function ProjectsSection() {
   return (
     <section
       id="projetos"
-      className="border-b border-[#E4E4E7] bg-[#FFFFFF] py-16 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#09090B]"
+      className="border-b border-[#E4E4E7] bg-[#FFFFFF] py-14 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#09090B]"
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="font-mono text-xs font-medium tracking-wider text-[#1D4ED8] uppercase dark:text-[#3B82F6]">
             {projectsSection.eyebrow}
           </p>
-          <h2 className="mt-2.5 text-3xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
+          <h2 className="mt-2.5 text-2xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
             {projectsSection.title}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[#52525B] dark:text-[#A1A1AA]">
@@ -27,11 +27,11 @@ export function ProjectsSection() {
         </div>
 
         {/* Clean 2x2 Featured Cases Grid */}
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-12">
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:mt-12">
           {projectsSection.items.map((project) => (
             <article
               key={project.id}
-              className="group flex flex-col justify-between rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-6 transition-colors hover:border-[#1D4ED8] sm:p-7 dark:border-[#27272A] dark:bg-[#111114] dark:hover:border-[#3B82F6]"
+              className="group flex min-w-0 flex-col justify-between rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-5 transition-colors hover:border-[#1D4ED8] sm:p-7 dark:border-[#27272A] dark:bg-[#111114] dark:hover:border-[#3B82F6]"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -70,12 +70,12 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-[#E4E4E7] pt-5 dark:border-[#27272A]">
+              <div className="mt-6 border-t border-[#E4E4E7] pt-4 dark:border-[#27272A]">
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1D4ED8] transition-colors hover:text-[#1E40AF] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1D4ED8] dark:text-[#3B82F6] dark:hover:text-[#60A5FA] dark:focus-visible:outline-[#3B82F6]"
+                  className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-[#1D4ED8] transition-colors hover:text-[#1E40AF] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1D4ED8] dark:text-[#3B82F6] dark:hover:text-[#60A5FA] dark:focus-visible:outline-[#3B82F6]"
                 >
                   <span>{project.linkLabel}</span>
                   <ArrowUpRight

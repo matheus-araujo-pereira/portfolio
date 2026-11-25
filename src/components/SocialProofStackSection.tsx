@@ -11,11 +11,11 @@ export function SocialProofStackSection() {
   return (
     <section
       id="stack"
-      className="border-b border-[#E4E4E7] bg-[#F8FAFC] py-16 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#111114]"
+      className="border-b border-[#E4E4E7] bg-[#F8FAFC] py-14 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#111114]"
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Client Review Highlight Card */}
-        <div className="rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] p-6 sm:p-8 lg:p-10 dark:border-[#27272A] dark:bg-[#09090B]">
+        <div className="min-w-0 rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] p-5 sm:p-8 lg:p-10 dark:border-[#27272A] dark:bg-[#09090B]">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="font-mono text-xs font-medium tracking-wider text-[#1D4ED8] uppercase dark:text-[#3B82F6]">
               {reviewAndStack.reviewEyebrow}
@@ -62,10 +62,10 @@ export function SocialProofStackSection() {
               href={reviewAndStack.prototypeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] px-4 py-2 text-sm font-semibold text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6]"
+              className="inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] px-4 py-2 text-sm font-semibold text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] sm:w-auto dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6]"
             >
               <span>{reviewAndStack.prototypeCta}</span>
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -76,7 +76,7 @@ export function SocialProofStackSection() {
             <p className="font-mono text-xs font-medium tracking-wider text-[#1D4ED8] uppercase dark:text-[#3B82F6]">
               {reviewAndStack.stackEyebrow}
             </p>
-            <h2 className="mt-2.5 text-3xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
+            <h2 className="mt-2.5 text-2xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
               {reviewAndStack.stackTitle}
             </h2>
             <p className="mt-3 text-base leading-relaxed text-[#52525B] dark:text-[#A1A1AA]">
@@ -88,7 +88,7 @@ export function SocialProofStackSection() {
             {reviewAndStack.categories.map((category) => (
               <div
                 key={category.id}
-                className="rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] p-6 dark:border-[#27272A] dark:bg-[#09090B]"
+                className="min-w-0 rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] p-5 sm:p-6 dark:border-[#27272A] dark:bg-[#09090B]"
               >
                 <h3 className="text-lg font-bold tracking-tight text-[#09090B] dark:text-[#FAFAFA]">
                   {category.title}

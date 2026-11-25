@@ -51,7 +51,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-clip">
         <HeroSection />
         <ServicesSection />
         <ProjectsSection />
