@@ -8,7 +8,7 @@ export const PROFILE = {
   whatsappNumber: "5579999984882",
   githubUrl: "https://github.com/matheus-araujo-pereira",
   linkedinUrl: "https://www.linkedin.com/in/matheus-araujo-pereira",
-  freelasUrl: "https://www.99freelas.com.br",
+  freelasUrl: "https://www.99freelas.com.br/user/matheusaraujopereira",
   resumePath: "/curriculo-matheus-araujo-pereira.pdf",
   photoPath: "/matheus-araujo.png",
 } as const;

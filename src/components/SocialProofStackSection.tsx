@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, Star } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { PORTFOLIO_CONTENT } from "@/data/profile";
+import { PORTFOLIO_CONTENT, PROFILE } from "@/data/profile";
 
 export function SocialProofStackSection() {
   const { locale } = useLanguage();
@@ -20,13 +20,19 @@ export function SocialProofStackSection() {
             <p className="font-mono text-xs font-medium tracking-wider text-[#1D4ED8] uppercase dark:text-[#3B82F6]">
               {reviewAndStack.reviewEyebrow}
             </p>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-3 py-1 font-mono text-xs font-medium text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]">
+            <a
+              href={PROFILE.freelasUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-3 py-1 font-mono text-xs font-medium text-[#1D4ED8] transition-colors hover:border-[#1D4ED8] hover:text-[#1E40AF] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA] dark:hover:border-[#3B82F6] dark:hover:text-[#93C5FD]"
+            >
               <Star
                 className="h-3.5 w-3.5 fill-current"
                 aria-hidden="true"
               />
               <span>{reviewAndStack.reviewBadge}</span>
-            </span>
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
           </div>
 
           <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#09090B] sm:text-3xl dark:text-[#FAFAFA]">
