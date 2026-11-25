@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
@@ -10,12 +9,12 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default async function Icon() {
-  const imageBuffer = await readFile(
-    join(process.cwd(), "public", "matheus-araujo.png")
-  );
-  const photoSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
+const imageBuffer = await readFile(
+  join(process.cwd(), "public", "matheus-araujo.png")
+);
+const photoSrc = `data:image/png;base64,${imageBuffer.toString("base64")}`;
 
+export default function Icon() {
   return new ImageResponse(
     (
       <div
