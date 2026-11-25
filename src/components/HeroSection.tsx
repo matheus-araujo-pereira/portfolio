@@ -1,6 +1,13 @@
+"use client";
+
 import Image from "next/image";
-import { ArrowUpRight, Download } from "lucide-react";
-import { PROFILE } from "@/data/profile";
+import { ArrowUpRight, Download, MapPin } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import {
+  PORTFOLIO_CONTENT,
+  PROFILE,
+  buildWhatsAppUrl,
+} from "@/data/profile";
 import {
   Freelas99Icon,
   GitHubIcon,
@@ -8,140 +15,127 @@ import {
   WhatsAppIcon,
 } from "@/components/BrandIcons";
 import { CopyEmailButton } from "@/components/CopyEmailButton";
-import { WorkspaceInspector } from "@/components/WorkspaceInspector";
 
 export function HeroSection() {
+  const { locale } = useLanguage();
+  const content = PORTFOLIO_CONTENT[locale];
+  const whatsappUrl = buildWhatsAppUrl(content.whatsappDefaultMessage);
+
   return (
     <section
       id="inicio"
-      className="border-b border-[#DCD9CE] bg-[#F6F5F0] py-14 sm:py-20 lg:py-24 dark:border-[#2E2E2A] dark:bg-[#141413]"
+      className="border-b border-[#E4E4E7] bg-[#FFFFFF] py-14 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#09090B]"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* Left Editorial Column */}
-          <div className="lg:col-span-6">
-            {/* Compact Studio Identity Seal */}
-            <div className="flex items-center gap-3.5">
-              <div className="flex h-12 w-12 shrink-0 items-end justify-center overflow-hidden rounded-xl border border-[#DCD9CE] bg-[#E8E5DC] dark:border-[#2E2E2A] dark:bg-[#1C1C1A]">
-                <Image
-                  src={PROFILE.photoPath}
-                  alt={PROFILE.name}
-                  width={48}
-                  height={48}
-                  sizes="48px"
-                  loading="eager"
-                  className="h-full w-full object-contain object-bottom pt-1"
-                />
-              </div>
-
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                  <p className="text-sm font-semibold tracking-tight text-[#141413] dark:text-[#F4F3EE]">
-                    {PROFILE.name}
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-[#141413] uppercase dark:text-[#F4F3EE]">
-                    <span
-                      className="h-2 w-2 rounded-full bg-[#4ADE80]"
-                      aria-hidden="true"
-                    />
-                    <span>Disponível</span>
-                  </span>
-                </div>
-                <p className="mt-0.5 font-mono text-[11px] tracking-wider text-[#57564F] uppercase dark:text-[#9E9D96]">
-                  {PROFILE.heroEyebrow} • {PROFILE.locationShort}
-                </p>
-              </div>
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-12">
+          {/* Left Column (7 cols): Human Introduction & CTAs */}
+          <div className="lg:col-span-7">
+            {/* Discreet Blue Availability Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-3.5 py-1.5 text-xs font-medium text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]">
+              <span
+                aria-hidden="true"
+                className="h-2 w-2 rounded-full bg-[#1D4ED8] dark:bg-[#3B82F6]"
+              />
+              <span>{content.hero.availability}</span>
             </div>
 
-            {/* Editorial Display Serif H1 */}
-            <h1 className="mt-7 font-serif text-5xl leading-[1.05] font-normal tracking-[-0.03em] text-[#141413] sm:text-6xl dark:text-[#F4F3EE]">
-              Sistemas críticos e produtos digitais com rigor de engenharia e{" "}
-              <em className="italic text-[#C4552D] dark:text-[#D96B43]">
-                design autoral
-              </em>
-              .
+            {/* Strong Human Headline (40px to 56px) */}
+            <h1 className="mt-6 text-[2.5rem] leading-[1.1] font-bold tracking-tight text-[#09090B] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.06] dark:text-[#FAFAFA]">
+              {content.hero.headline}
             </h1>
 
-            {/* Direct Positioning Paragraph */}
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-[#57564F] sm:text-lg dark:text-[#9E9D96]">
-              {PROFILE.heroParagraph}
+            {/* Direct Bio Paragraph */}
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#52525B] sm:text-lg dark:text-[#A1A1AA]">
+              {content.hero.summary}
             </p>
 
-            {/* Primary Actions */}
+            {/* Primary & Secondary CTAs */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href={PROFILE.whatsappDefaultUrl}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#141413] px-5 py-3 text-sm font-medium text-[#F4F3EE] transition-colors hover:bg-[#232320] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:bg-[#F4F3EE] dark:text-[#141413] dark:hover:bg-[#E4E2D9] dark:focus-visible:outline-[#D96B43]"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#1D4ED8] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1E40AF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] sm:text-base dark:bg-[#3B82F6] dark:hover:bg-[#60A5FA] dark:focus-visible:outline-[#3B82F6]"
               >
-                <span>Solicitar orçamento</span>
+                <WhatsAppIcon className="h-4 w-4" />
+                <span>{content.hero.primaryCta}</span>
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
 
               <a
                 href={PROFILE.resumePath}
                 download
-                className="inline-flex items-center gap-2 rounded-md border border-[#DCD9CE] bg-transparent px-5 py-3 font-mono text-xs font-medium text-[#141413] transition-colors hover:border-[#141413] hover:bg-[#FFFFFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:border-[#2E2E2A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE] dark:hover:bg-[#1C1C1A] dark:focus-visible:outline-[#D96B43]"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] px-5 py-3 text-sm font-semibold text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] sm:text-base dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6] dark:focus-visible:outline-[#3B82F6]"
               >
-                <Download className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>Baixar currículo (.pdf)</span>
+                <Download className="h-4 w-4" aria-hidden="true" />
+                <span>{content.hero.secondaryCta}</span>
               </a>
             </div>
 
-            {/* 5 Platform Shortcut Squares */}
+            {/* Direct Clean Links with Icon + Label */}
             <div className="mt-7 flex flex-wrap items-center gap-2">
               <a
                 href={PROFILE.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub de Matheus Araujo Pereira"
-                title="GitHub"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#DCD9CE] bg-[#FFFFFF] text-[#57564F] transition-colors hover:border-[#141413] hover:text-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#9E9D96] dark:hover:border-[#F4F3EE] dark:hover:text-[#F4F3EE]"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] px-3 py-2 text-sm font-medium text-[#52525B] transition-colors hover:border-[#1D4ED8] hover:text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#A1A1AA] dark:hover:border-[#3B82F6] dark:hover:text-[#FAFAFA]"
               >
                 <GitHubIcon className="h-4 w-4" />
+                <span>GitHub</span>
               </a>
 
               <a
                 href={PROFILE.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn de Matheus Araujo Pereira"
-                title="LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#DCD9CE] bg-[#FFFFFF] text-[#57564F] transition-colors hover:border-[#141413] hover:text-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#9E9D96] dark:hover:border-[#F4F3EE] dark:hover:text-[#F4F3EE]"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] px-3 py-2 text-sm font-medium text-[#52525B] transition-colors hover:border-[#1D4ED8] hover:text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#A1A1AA] dark:hover:border-[#3B82F6] dark:hover:text-[#FAFAFA]"
               >
                 <LinkedInIcon className="h-4 w-4" />
+                <span>LinkedIn</span>
               </a>
 
               <a
                 href={PROFILE.freelasUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Perfil no 99Freelas"
-                title="99Freelas"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#DCD9CE] bg-[#FFFFFF] text-[#57564F] transition-colors hover:border-[#141413] hover:text-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#9E9D96] dark:hover:border-[#F4F3EE] dark:hover:text-[#F4F3EE]"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] px-3 py-2 text-sm font-medium text-[#52525B] transition-colors hover:border-[#1D4ED8] hover:text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#A1A1AA] dark:hover:border-[#3B82F6] dark:hover:text-[#FAFAFA]"
               >
-                <Freelas99Icon className="h-5 w-5" />
+                <Freelas99Icon className="h-4 w-4" />
+                <span>99Freelas</span>
               </a>
 
-              <a
-                href={PROFILE.whatsappDefaultUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp (79) 99998-4882"
-                title={`WhatsApp ${PROFILE.whatsappDisplay}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#DCD9CE] bg-[#FFFFFF] text-[#57564F] transition-colors hover:border-[#141413] hover:text-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#9E9D96] dark:hover:border-[#F4F3EE] dark:hover:text-[#F4F3EE]"
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-              </a>
-
-              <CopyEmailButton variant="square" />
+              <CopyEmailButton variant="inline" />
             </div>
           </div>
 
-          {/* Right Interactive Engineering Workspace */}
-          <div className="lg:col-span-6">
-            <WorkspaceInspector />
+          {/* Right Column (5 cols): Prominent Studio Portrait Card */}
+          <div className="lg:col-span-5">
+            <figure className="mx-auto w-full max-w-92 overflow-hidden rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] dark:border-[#27272A] dark:bg-[#111114]">
+              <div className="flex items-end justify-center overflow-hidden bg-[#F1F5F9] dark:bg-[#18181B]">
+                <Image
+                  src={PROFILE.photoPath}
+                  alt={PROFILE.name}
+                  width={436}
+                  height={436}
+                  sizes="(max-width: 1024px) 368px, 368px"
+                  loading="eager"
+                  className="h-auto w-full object-contain object-bottom pt-4"
+                />
+              </div>
+
+              <figcaption className="border-t border-[#E4E4E7] bg-[#FFFFFF] px-5 py-4 dark:border-[#27272A] dark:bg-[#111114]">
+                <p className="text-base font-bold tracking-tight text-[#09090B] dark:text-[#FAFAFA]">
+                  {PROFILE.name}
+                </p>
+                <p className="mt-0.5 text-sm font-medium text-[#1D4ED8] dark:text-[#3B82F6]">
+                  {content.hero.photoRole}
+                </p>
+                <p className="mt-2 flex items-center gap-1.5 font-mono text-xs text-[#52525B] dark:text-[#A1A1AA]">
+                  <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  <span>{content.hero.photoLocation}</span>
+                </p>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>

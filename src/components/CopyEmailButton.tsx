@@ -2,17 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Check, Copy, Mail } from "lucide-react";
-import { PROFILE } from "@/data/profile";
+import { useLanguage } from "@/context/LanguageContext";
+import { PORTFOLIO_CONTENT, PROFILE } from "@/data/profile";
 
 interface CopyEmailButtonProps {
-  variant?: "square" | "row";
+  variant?: "inline" | "card";
   className?: string;
 }
 
 export function CopyEmailButton({
-  variant = "square",
+  variant = "inline",
   className = "",
 }: CopyEmailButtonProps) {
+  const { locale } = useLanguage();
+  const content = PORTFOLIO_CONTENT[locale];
   const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -61,37 +64,57 @@ export function CopyEmailButton({
     }
   };
 
-  if (variant === "square") {
+  if (variant === "card") {
     return (
-      <div className="relative inline-flex items-center">
-        <button
-          type="button"
-          onClick={handleCopy}
-          aria-label={`Copiar e-mail ${PROFILE.email}`}
-          title={copied ? "Copiado!" : `Copiar e-mail (${PROFILE.email})`}
-          className={`inline-flex h-10 w-10 items-center justify-center rounded-md border transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:focus-visible:outline-[#D96B43] ${
+      <button
+        type="button"
+        onClick={handleCopy}
+        aria-live="polite"
+        className={`group flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-3.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] dark:focus-visible:outline-[#3B82F6] ${
+          copied
+            ? "border-[#BFDBFE] bg-[#EFF6FF] text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]"
+            : "border-[#E4E4E7] bg-[#FFFFFF] text-[#09090B] hover:border-[#1D4ED8] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6]"
+        } ${className}`}
+      >
+        <span className="flex min-w-0 items-center gap-3">
+          {copied ? (
+            <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
+          ) : (
+            <Mail
+              className="h-4 w-4 shrink-0 text-[#52525B] dark:text-[#A1A1AA]"
+              aria-hidden="true"
+            />
+          )}
+          <span className="min-w-0">
+            <span className="block text-xs text-[#52525B] dark:text-[#A1A1AA]">
+              {content.footer.copyEmailPrompt}
+            </span>
+            <span className="block truncate font-mono text-sm font-medium">
+              {PROFILE.email}
+            </span>
+          </span>
+        </span>
+
+        <span
+          className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1 font-mono text-xs font-medium transition-colors ${
             copied
-              ? "border-[#C4552D] bg-[#C4552D]/10 text-[#C4552D] dark:border-[#D96B43] dark:bg-[#D96B43]/15 dark:text-[#D96B43]"
-              : "border-[#DCD9CE] bg-[#FFFFFF] text-[#57564F] hover:border-[#141413] hover:text-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#9E9D96] dark:hover:border-[#F4F3EE] dark:hover:text-[#F4F3EE]"
-          } ${className}`}
+              ? "bg-[#1D4ED8] text-white dark:bg-[#3B82F6]"
+              : "bg-[#F1F5F9] text-[#52525B] group-hover:bg-[#1D4ED8] group-hover:text-white dark:bg-[#18181B] dark:text-[#A1A1AA] dark:group-hover:bg-[#3B82F6] dark:group-hover:text-white"
+          }`}
         >
           {copied ? (
-            <Check className="h-4 w-4" aria-hidden="true" />
+            <>
+              <Check className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{content.footer.copiedLabel}</span>
+            </>
           ) : (
-            <Mail className="h-4 w-4" aria-hidden="true" />
+            <>
+              <Copy className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{content.footer.copyButton}</span>
+            </>
           )}
-        </button>
-
-        {copied && (
-          <span
-            role="status"
-            aria-live="polite"
-            className="ml-2 font-mono text-xs font-medium text-[#C4552D] dark:text-[#D96B43]"
-          >
-            Copiado!
-          </span>
-        )}
-      </div>
+        </span>
+      </button>
     );
   }
 
@@ -100,39 +123,24 @@ export function CopyEmailButton({
       type="button"
       onClick={handleCopy}
       aria-live="polite"
-      className={`group inline-flex items-center justify-between gap-4 rounded-md border px-4 py-3 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:focus-visible:outline-[#D96B43] ${
+      title={PROFILE.email}
+      className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] dark:focus-visible:outline-[#3B82F6] ${
         copied
-          ? "border-[#C4552D] bg-[#C4552D]/10 text-[#C4552D] dark:border-[#D96B43] dark:bg-[#D96B43]/15 dark:text-[#D96B43]"
-          : "border-[#DCD9CE] bg-[#FFFFFF] text-[#141413] hover:border-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE]"
+          ? "border-[#BFDBFE] bg-[#EFF6FF] text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]"
+          : "border-[#E4E4E7] bg-[#FFFFFF] text-[#52525B] hover:border-[#1D4ED8] hover:text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#A1A1AA] dark:hover:border-[#3B82F6] dark:hover:text-[#FAFAFA]"
       } ${className}`}
     >
-      <span className="flex min-w-0 items-center gap-3">
-        {copied ? (
+      {copied ? (
+        <>
           <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
-        ) : (
-          <Mail
-            className="h-4 w-4 shrink-0 text-[#57564F] dark:text-[#9E9D96]"
-            aria-hidden="true"
-          />
-        )}
-        <span className="truncate font-mono text-sm">{PROFILE.email}</span>
-      </span>
-
-      <span className="inline-flex shrink-0 items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
-        {copied ? (
-          <span>Copiado!</span>
-        ) : (
-          <>
-            <Copy
-              className="h-3.5 w-3.5 text-[#57564F] transition-colors group-hover:text-[#141413] dark:text-[#9E9D96] dark:group-hover:text-[#F4F3EE]"
-              aria-hidden="true"
-            />
-            <span className="text-[#57564F] group-hover:text-[#141413] dark:text-[#9E9D96] dark:group-hover:text-[#F4F3EE]">
-              Copiar
-            </span>
-          </>
-        )}
-      </span>
+          <span>{content.hero.copiedLabel}</span>
+        </>
+      ) : (
+        <>
+          <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span>{content.hero.copyEmailLabel}</span>
+        </>
+      )}
     </button>
   );
 }

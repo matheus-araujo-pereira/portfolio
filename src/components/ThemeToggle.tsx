@@ -1,8 +1,13 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { PORTFOLIO_CONTENT } from "@/data/profile";
 
 export function ThemeToggle() {
+  const { locale } = useLanguage();
+  const label = PORTFOLIO_CONTENT[locale].header.toggleTheme;
+
   const handleToggle = () => {
     const root = document.documentElement;
     const isCurrentlyDark = root.classList.contains("dark");
@@ -20,9 +25,9 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={handleToggle}
-      aria-label="Alternar tema claro e escuro"
-      title="Alternar tema claro e escuro"
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[#DCD9CE] bg-transparent text-[#57564F] transition-colors hover:border-[#141413] hover:text-[#141413] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:border-[#2E2E2A] dark:text-[#9E9D96] dark:hover:border-[#F4F3EE] dark:hover:text-[#F4F3EE] dark:focus-visible:outline-[#D96B43] cursor-pointer"
+      aria-label={label}
+      title={label}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] text-[#52525B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#A1A1AA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6] dark:focus-visible:outline-[#3B82F6] cursor-pointer"
     >
       <Sun className="hidden h-4 w-4 dark:block" aria-hidden="true" />
       <Moon className="block h-4 w-4 dark:hidden" aria-hidden="true" />

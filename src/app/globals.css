@@ -3,31 +3,28 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg-canvas: #f6f5f0;
-  --bg-surface: #ffffff;
-  --bg-elevated: #eceae2;
-  --border-structural: #dcd9ce;
-  --text-primary: #141413;
-  --text-secondary: #57564f;
-  --accent-terracotta: #c4552d;
-  --status-online: #4ade80;
+  --bg-canvas: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-muted: #f1f5f9;
+  --border-color: #e4e4e7;
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --accent-blue: #1d4ed8;
 }
 
 .dark {
-  --bg-canvas: #141413;
-  --bg-surface: #1c1c1a;
-  --bg-elevated: #232320;
-  --border-structural: #2e2e2a;
-  --text-primary: #f4f3ee;
-  --text-secondary: #9e9d96;
-  --accent-terracotta: #d96b43;
-  --status-online: #4ade80;
+  --bg-canvas: #09090b;
+  --bg-subtle: #111114;
+  --bg-muted: #18181b;
+  --border-color: #27272a;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --accent-blue: #3b82f6;
 }
 
 @theme inline {
   --color-background: var(--bg-canvas);
   --color-foreground: var(--text-primary);
-  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
     sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo,
@@ -54,11 +51,11 @@ body {
 }
 
 ::selection {
-  background-color: rgba(196, 85, 45, 0.2);
+  background-color: rgba(29, 78, 216, 0.16);
   color: var(--text-primary);
 }
 
 .dark ::selection {
-  background-color: rgba(217, 107, 67, 0.3);
-  color: #f4f3ee;
+  background-color: rgba(59, 130, 246, 0.32);
+  color: #fafafa;
 }

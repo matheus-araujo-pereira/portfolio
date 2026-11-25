@@ -1,106 +1,76 @@
-import Image from "next/image";
-import { EDUCATION_SUMMARY, EXPERIENCES, PROFILE } from "@/data/profile";
+"use client";
+
+import { GraduationCap, Languages, MapPin } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { PORTFOLIO_CONTENT } from "@/data/profile";
 
 export function ExperienceSection() {
+  const { locale } = useLanguage();
+  const { experienceSection } = PORTFOLIO_CONTENT[locale];
+
   return (
     <section
       id="trajetoria"
-      className="border-b border-[#DCD9CE] bg-[#F6F5F0] py-18 sm:py-24 dark:border-[#2E2E2A] dark:bg-[#141413]"
+      className="border-b border-[#E4E4E7] bg-[#FFFFFF] py-16 sm:py-20 lg:py-24 dark:border-[#27272A] dark:bg-[#09090B]"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-12">
-          {/* Left Sticky Executive Column: Heading + Studio Portrait Card + UFS Summary */}
-          <div className="lg:sticky lg:top-24 lg:col-span-4">
-            <p className="font-mono text-xs tracking-widest text-[#C4552D] uppercase dark:text-[#D96B43]">
-              04 / Currículo Executivo
-            </p>
-            <h2 className="mt-3 font-serif text-4xl leading-[1.08] font-normal tracking-tight text-[#141413] sm:text-5xl dark:text-[#F4F3EE]">
-              Experiência e formação
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-[#57564F] dark:text-[#9E9D96]">
-              Trajetória contínua em sistemas arrecadatórios públicos, liderança
-              técnica e formação acadêmica na Universidade Federal de Sergipe.
-            </p>
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="max-w-2xl">
+          <p className="font-mono text-xs font-medium tracking-wider text-[#1D4ED8] uppercase dark:text-[#3B82F6]">
+            {experienceSection.eyebrow}
+          </p>
+          <h2 className="mt-2.5 text-3xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
+            {experienceSection.title}
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-[#52525B] dark:text-[#A1A1AA]">
+            {experienceSection.subtitle}
+          </p>
+        </div>
 
-            {/* Editorial Studio Portrait Card */}
-            <figure className="mt-7 w-full max-w-60 overflow-hidden rounded-xl border border-[#DCD9CE] bg-[#E8E5DC] dark:border-[#2E2E2A] dark:bg-[#1C1C1A]">
-              <div className="flex aspect-square w-full items-end justify-center overflow-hidden bg-[#E8E5DC] dark:bg-[#1C1C1A]">
-                <Image
-                  src={PROFILE.photoPath}
-                  alt={`Retrato editorial de ${PROFILE.name}`}
-                  width={436}
-                  height={436}
-                  sizes="240px"
-                  className="h-full w-full object-contain object-bottom pt-3"
-                />
-              </div>
+        <div className="mt-10 grid grid-cols-1 items-start gap-10 lg:mt-12 lg:grid-cols-12">
+          {/* Left 8 Cols: Clean Vertical Timeline with Blue Markers */}
+          <div className="relative lg:col-span-8">
+            <div
+              aria-hidden="true"
+              className="absolute top-3 bottom-3 left-2.5 w-px bg-[#E4E4E7] dark:bg-[#27272A]"
+            />
 
-              <figcaption className="flex items-center justify-between gap-2 border-t border-[#DCD9CE] bg-[#F6F5F0] px-3.5 py-2.5 font-mono text-[11px] tracking-wider text-[#141413] uppercase dark:border-[#2E2E2A] dark:bg-[#141413] dark:text-[#F4F3EE]">
-                <span>MATHEUS A. PEREIRA</span>
-                <span
-                  title="Disponível para projetos e oportunidades"
-                  aria-label="Disponível"
-                  className="h-2 w-2 shrink-0 rounded-full bg-[#4ADE80]"
-                />
-              </figcaption>
-            </figure>
+            <ol className="space-y-6">
+              {experienceSection.items.map((exp) => (
+                <li key={exp.id} className="relative pl-9">
+                  {/* Blue Timeline Marker */}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute top-6 left-1 h-3 w-3 rounded-full ring-4 ring-[#FFFFFF] dark:ring-[#09090B] ${
+                      exp.current
+                        ? "bg-[#1D4ED8] dark:bg-[#3B82F6]"
+                        : "border-2 border-[#1D4ED8] bg-[#FFFFFF] dark:border-[#3B82F6] dark:bg-[#09090B]"
+                    }`}
+                  />
 
-            {/* Compact Academic Formation & Languages Summary */}
-            <div className="mt-8">
-              <p className="font-mono text-[11px] tracking-widest text-[#57564F] uppercase dark:text-[#9E9D96]">
-                Formação Acadêmica &amp; Idiomas
-              </p>
-
-              <div className="mt-3 divide-y divide-[#DCD9CE] rounded-xl border border-[#DCD9CE] bg-[#FFFFFF] dark:divide-[#2E2E2A] dark:border-[#2E2E2A] dark:bg-[#1C1C1A]">
-                {EDUCATION_SUMMARY.map((item) => (
-                  <div key={item.title} className="p-4">
-                    <p className="font-mono text-[11px] text-[#C4552D] dark:text-[#D96B43]">
-                      {item.period}
-                    </p>
-                    <h3 className="mt-1 font-serif text-base leading-snug font-normal text-[#141413] dark:text-[#F4F3EE]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-[#57564F] dark:text-[#9E9D96]">
-                      {item.institution}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Editorial Horizontal-Rule Experience Table */}
-          <div className="lg:col-span-8">
-            <div className="divide-y divide-[#DCD9CE] border-y border-[#DCD9CE] dark:divide-[#2E2E2A] dark:border-[#2E2E2A]">
-              {EXPERIENCES.map((exp) => (
-                <article
-                  key={exp.id}
-                  className="grid grid-cols-1 gap-4 py-7 sm:py-8 md:grid-cols-12 md:gap-6"
-                >
-                  {/* Period Column */}
-                  <div className="md:col-span-4">
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-medium tracking-wider text-[#141413] sm:text-sm dark:text-[#F4F3EE]">
-                        {exp.period}
-                      </span>
-                      {exp.current && (
-                        <span className="font-mono text-[10px] font-medium tracking-widest text-[#C4552D] uppercase dark:text-[#D96B43]">
-                          • Atual
+                  <article className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-6 dark:border-[#27272A] dark:bg-[#111114]">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-mono text-xs font-medium text-[#52525B] dark:text-[#A1A1AA]">
+                          {exp.period}
                         </span>
-                      )}
-                    </div>
-                    <p className="mt-1 font-mono text-xs text-[#57564F] dark:text-[#9E9D96]">
-                      {exp.location}
-                    </p>
-                  </div>
+                        {exp.current && (
+                          <span className="rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-2.5 py-0.5 font-mono text-[11px] font-medium text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]">
+                            {experienceSection.currentBadge}
+                          </span>
+                        )}
+                      </div>
 
-                  {/* Role & Deliverables Column */}
-                  <div className="md:col-span-8">
-                    <h3 className="font-serif text-xl leading-snug font-normal tracking-[-0.015em] text-[#141413] sm:text-2xl dark:text-[#F4F3EE]">
+                      <span className="inline-flex items-center gap-1 font-mono text-xs text-[#52525B] dark:text-[#A1A1AA]">
+                        <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>{exp.location}</span>
+                      </span>
+                    </div>
+
+                    <h3 className="mt-3 text-lg font-bold tracking-tight text-[#09090B] sm:text-xl dark:text-[#FAFAFA]">
                       {exp.role}
                     </h3>
 
-                    <p className="mt-1 text-sm font-medium text-[#57564F] dark:text-[#9E9D96]">
+                    <p className="mt-1 text-sm font-medium text-[#1D4ED8] dark:text-[#3B82F6]">
                       {exp.organization}
                     </p>
 
@@ -108,19 +78,91 @@ export function ExperienceSection() {
                       {exp.highlights.map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-3 text-sm leading-relaxed text-[#57564F] dark:text-[#9E9D96]"
+                          className="flex items-start gap-2.5 text-sm leading-relaxed text-[#52525B] dark:text-[#A1A1AA]"
                         >
                           <span
                             aria-hidden="true"
-                            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#C4552D] dark:bg-[#D96B43]"
+                            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1D4ED8] dark:bg-[#3B82F6]"
                           />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
-                </article>
+                  </article>
+                </li>
               ))}
+            </ol>
+          </div>
+
+          {/* Right 4 Cols: Academic Education & Languages Cards */}
+          <div className="space-y-6 lg:col-span-4">
+            {/* Education Card */}
+            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-6 dark:border-[#27272A] dark:bg-[#111114]">
+              <div className="flex items-center gap-2.5">
+                <GraduationCap
+                  className="h-5 w-5 text-[#1D4ED8] dark:text-[#3B82F6]"
+                  aria-hidden="true"
+                />
+                <h3 className="text-lg font-bold tracking-tight text-[#09090B] dark:text-[#FAFAFA]">
+                  {experienceSection.educationTitle}
+                </h3>
+              </div>
+
+              <div className="mt-5 space-y-4">
+                {experienceSection.education.map((edu) => (
+                  <div
+                    key={edu.id}
+                    className="rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] p-4 dark:border-[#27272A] dark:bg-[#09090B]"
+                  >
+                    <p className="font-mono text-xs font-medium text-[#1D4ED8] dark:text-[#3B82F6]">
+                      {edu.period}
+                    </p>
+                    <h4 className="mt-1.5 text-sm font-bold text-[#09090B] dark:text-[#FAFAFA]">
+                      {edu.degree}
+                    </h4>
+                    <p className="mt-1 text-xs leading-relaxed text-[#52525B] dark:text-[#A1A1AA]">
+                      {edu.institution}
+                    </p>
+                    <span className="mt-2.5 inline-block rounded-md border border-[#E4E4E7] bg-[#F8FAFC] px-2 py-0.5 font-mono text-[11px] text-[#52525B] dark:border-[#27272A] dark:bg-[#18181B] dark:text-[#A1A1AA]">
+                      {edu.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Languages Card */}
+            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F8FAFC] p-6 dark:border-[#27272A] dark:bg-[#111114]">
+              <div className="flex items-center gap-2.5">
+                <Languages
+                  className="h-5 w-5 text-[#1D4ED8] dark:text-[#3B82F6]"
+                  aria-hidden="true"
+                />
+                <h3 className="text-lg font-bold tracking-tight text-[#09090B] dark:text-[#FAFAFA]">
+                  {experienceSection.languagesTitle}
+                </h3>
+              </div>
+
+              <div className="mt-5 space-y-3">
+                {experienceSection.languages.map((lang) => (
+                  <div
+                    key={lang.name}
+                    className="rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] p-4 dark:border-[#27272A] dark:bg-[#09090B]"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <h4 className="text-sm font-bold text-[#09090B] dark:text-[#FAFAFA]">
+                        {lang.name}
+                      </h4>
+                      <span className="rounded-full border border-[#BFDBFE] bg-[#EFF6FF] px-2.5 py-0.5 font-mono text-[11px] font-medium text-[#1D4ED8] dark:border-[#1D4ED8]/50 dark:bg-[#172554]/50 dark:text-[#60A5FA]">
+                        {lang.level}
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-xs leading-relaxed text-[#52525B] dark:text-[#A1A1AA]">
+                      {lang.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

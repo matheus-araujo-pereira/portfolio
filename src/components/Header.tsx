@@ -1,18 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { NAV_ITEMS, PROFILE } from "@/data/profile";
+import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import {
+  PORTFOLIO_CONTENT,
+  PROFILE,
+  buildWhatsAppUrl,
+} from "@/data/profile";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {
+  const { locale } = useLanguage();
+  const content = PORTFOLIO_CONTENT[locale];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    const sections = NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(
-      (el): el is HTMLElement => el !== null
-    );
+    const ids = ["servicos", "projetos", "trajetoria", "stack", "contato"];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
 
     if (sections.length === 0) return;
 
@@ -37,36 +46,39 @@ export function Header() {
   }, []);
 
   const closeMenu = () => setMobileMenuOpen(false);
+  const whatsappUrl = buildWhatsAppUrl(content.whatsappDefaultMessage);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#DCD9CE] bg-[#F6F5F0]/92 backdrop-blur-md transition-colors dark:border-[#2E2E2A] dark:bg-[#141413]/92">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-10">
-        {/* Typographic Serif Monogram */}
+    <header className="sticky top-0 z-50 border-b border-[#E4E4E7] bg-[#FFFFFF]/92 backdrop-blur-md transition-colors dark:border-[#27272A] dark:bg-[#09090B]/92">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
+        {/* Brand */}
         <a
           href="#inicio"
           onClick={closeMenu}
-          aria-label="Matheus Araujo Pereira — Voltar ao início"
-          className="font-serif text-2xl font-medium tracking-tight text-[#141413] transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C4552D] dark:text-[#F4F3EE] dark:focus-visible:outline-[#D96B43]"
+          className="flex items-center gap-2 text-base font-bold tracking-tight text-[#09090B] transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1D4ED8] dark:text-[#FAFAFA] dark:focus-visible:outline-[#3B82F6]"
         >
-          {PROFILE.monogram}
-          <span className="text-[#C4552D] dark:text-[#D96B43]">.</span>
+          <span>{PROFILE.shortName}</span>
+          <span
+            aria-hidden="true"
+            className="h-1.5 w-1.5 rounded-full bg-[#1D4ED8] dark:bg-[#3B82F6]"
+          />
         </a>
 
-        {/* Clean Center Navigation */}
+        {/* Center Navigation */}
         <nav
-          aria-label="Navegação principal"
-          className="hidden items-center gap-7 md:flex"
+          aria-label={locale === "en" ? "Main navigation" : "Navegação principal"}
+          className="hidden items-center gap-6 lg:flex"
         >
-          {NAV_ITEMS.map((item) => {
+          {content.nav.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <a
                 key={item.id}
                 href={item.href}
-                className={`text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C4552D] dark:focus-visible:outline-[#D96B43] ${
+                className={`text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1D4ED8] dark:focus-visible:outline-[#3B82F6] ${
                   isActive
-                    ? "text-[#141413] underline decoration-[#C4552D] decoration-1 underline-offset-8 dark:text-[#F4F3EE] dark:decoration-[#D96B43]"
-                    : "text-[#57564F] hover:text-[#141413] dark:text-[#9E9D96] dark:hover:text-[#F4F3EE]"
+                    ? "text-[#1D4ED8] dark:text-[#3B82F6]"
+                    : "text-[#52525B] hover:text-[#09090B] dark:text-[#A1A1AA] dark:hover:text-[#FAFAFA]"
                 }`}
               >
                 {item.label}
@@ -76,17 +88,17 @@ export function Header() {
         </nav>
 
         {/* Right Controls */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
           <ThemeToggle />
 
           <a
-            href={PROFILE.whatsappDefaultUrl}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-md bg-[#141413] px-4 py-2 text-sm font-medium text-[#F4F3EE] transition-colors hover:bg-[#232320] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] sm:inline-flex dark:bg-[#F4F3EE] dark:text-[#141413] dark:hover:bg-[#E4E2D9] dark:focus-visible:outline-[#D96B43]"
+            className="hidden items-center justify-center rounded-lg bg-[#1D4ED8] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#1E40AF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] sm:inline-flex dark:bg-[#3B82F6] dark:hover:bg-[#60A5FA] dark:focus-visible:outline-[#3B82F6]"
           >
-            <span>Iniciar projeto</span>
-            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            {content.header.cta}
           </a>
 
           <button
@@ -94,8 +106,12 @@ export function Header() {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav"
-            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[#DCD9CE] text-[#141413] transition-colors hover:border-[#141413] md:hidden dark:border-[#2E2E2A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE] cursor-pointer"
+            aria-label={
+              mobileMenuOpen
+                ? content.header.closeMenu
+                : content.header.openMenu
+            }
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] text-[#09090B] transition-colors hover:border-[#1D4ED8] lg:hidden dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] cursor-pointer"
           >
             {mobileMenuOpen ? (
               <X className="h-4 w-4" aria-hidden="true" />
@@ -106,43 +122,47 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div
           id="mobile-nav"
-          className="border-t border-[#DCD9CE] bg-[#F6F5F0] px-5 pt-4 pb-6 md:hidden dark:border-[#2E2E2A] dark:bg-[#141413]"
+          className="border-t border-[#E4E4E7] bg-[#FFFFFF] px-5 pt-3 pb-5 lg:hidden dark:border-[#27272A] dark:bg-[#09090B]"
         >
-          <nav aria-label="Navegação mobile" className="flex flex-col">
-            {NAV_ITEMS.map((item) => (
+          <nav
+            aria-label={
+              locale === "en" ? "Mobile navigation" : "Navegação mobile"
+            }
+            className="flex flex-col"
+          >
+            {content.nav.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
                 onClick={closeMenu}
-                className="border-b border-[#DCD9CE]/70 py-3 text-sm font-medium text-[#141413] transition-colors hover:text-[#C4552D] dark:border-[#2E2E2A]/80 dark:text-[#F4F3EE] dark:hover:text-[#D96B43]"
+                className="border-b border-[#E4E4E7] py-3 text-sm font-medium text-[#09090B] transition-colors hover:text-[#1D4ED8] dark:border-[#27272A] dark:text-[#FAFAFA] dark:hover:text-[#3B82F6]"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          <div className="mt-5 flex flex-col gap-2.5">
+          <div className="mt-4 flex flex-col gap-2.5">
             <a
-              href={PROFILE.whatsappDefaultUrl}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
-              className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-[#141413] px-4 py-3 text-sm font-medium text-[#F4F3EE] dark:bg-[#F4F3EE] dark:text-[#141413]"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-[#1D4ED8] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1E40AF] dark:bg-[#3B82F6] dark:hover:bg-[#60A5FA]"
             >
-              <span>Iniciar projeto</span>
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              {content.hero.primaryCta}
             </a>
             <a
               href={PROFILE.resumePath}
               download
               onClick={closeMenu}
-              className="inline-flex w-full items-center justify-center rounded-md border border-[#DCD9CE] px-4 py-2.5 font-mono text-xs font-medium text-[#141413] dark:border-[#2E2E2A] dark:text-[#F4F3EE]"
+              className="inline-flex w-full items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] px-4 py-2.5 text-sm font-medium text-[#09090B] dark:border-[#27272A] dark:bg-[#111114] dark:text-[#FAFAFA]"
             >
-              Baixar currículo (.pdf)
+              {content.hero.secondaryCta}
             </a>
           </div>
         </div>

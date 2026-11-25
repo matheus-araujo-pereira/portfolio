@@ -16,13 +16,13 @@ export function createOgImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "56px 64px",
-          background: "#141413",
-          color: "#F4F3EE",
+          background: "#09090B",
+          color: "#FAFAFA",
           fontFamily: "sans-serif",
-          border: "1px solid #2E2E2A",
+          border: "1px solid #27272A",
         }}
       >
-        {/* Top editorial hairline */}
+        {/* Top bar */}
         <div
           style={{
             display: "flex",
@@ -30,107 +30,115 @@ export function createOgImage() {
             justifyContent: "space-between",
             width: "100%",
             paddingBottom: "24px",
-            borderBottom: "1px solid #2E2E2A",
+            borderBottom: "1px solid #27272A",
           }}
         >
           <div
             style={{
               display: "flex",
-              alignItems: "baseline",
-              fontFamily: "Georgia, serif",
-              fontSize: "34px",
-              fontWeight: 500,
+              alignItems: "center",
+              gap: "12px",
+              fontSize: "26px",
+              fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "#F4F3EE",
+              color: "#FAFAFA",
             }}
           >
-            MAP
-            <span style={{ color: "#D96B43" }}>.</span>
+            <span>Matheus Araujo</span>
+            <div
+              style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "9999px",
+                background: "#2563EB",
+              }}
+            />
           </div>
 
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
+              gap: "10px",
+              padding: "8px 16px",
+              borderRadius: "9999px",
+              background: "rgba(37, 99, 235, 0.16)",
+              border: "1px solid rgba(37, 99, 235, 0.5)",
+              color: "#93C5FD",
               fontSize: "17px",
-              letterSpacing: "0.08em",
-              color: "#9E9D96",
+              fontWeight: 600,
             }}
           >
-            <span>ENGENHARIA DE SOFTWARE / ARACAJU, SE</span>
             <div
               style={{
-                width: "9px",
-                height: "9px",
+                width: "8px",
+                height: "8px",
                 borderRadius: "9999px",
-                background: "#4ADE80",
+                background: "#2563EB",
               }}
             />
-            <span style={{ color: "#F4F3EE" }}>DISPONÍVEL</span>
+            <span>Disponível para projetos</span>
           </div>
         </div>
 
-        {/* Center editorial statement */}
+        {/* Center headline */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             gap: "20px",
-            maxWidth: "1020px",
+            maxWidth: "980px",
           }}
         >
           <div
             style={{
-              fontFamily: "Georgia, serif",
-              fontSize: "58px",
-              fontWeight: 400,
+              fontSize: "60px",
+              fontWeight: 700,
               lineHeight: 1.08,
-              letterSpacing: "-0.025em",
-              color: "#F4F3EE",
+              letterSpacing: "-0.03em",
+              color: "#FAFAFA",
             }}
           >
-            Sistemas críticos e produtos digitais com rigor de engenharia e
-            design autoral.
+            Engenharia de software e produtos digitais sob medida.
           </div>
 
           <div
             style={{
               fontSize: "24px",
-              color: "#9E9D96",
+              color: "#A1A1AA",
               lineHeight: 1.45,
             }}
           >
             Matheus Araujo Pereira — Engenheiro de Software Full Stack &amp;
-            UI/UX Designer
+            UI/UX • Aracaju, SE
           </div>
         </div>
 
-        {/* Bottom metadata bar */}
+        {/* Bottom metadata */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "1px solid #2E2E2A",
+            borderTop: "1px solid #27272A",
             paddingTop: "24px",
           }}
         >
-          <div style={{ display: "flex", gap: "12px" }}>
+          <div style={{ display: "flex", gap: "10px" }}>
             {[
-              "Java 21 & Spring Boot",
+              "Java & Spring Boot",
               "Angular & Next.js",
               "PostgreSQL & Oracle",
-              "Figma & Design Systems",
+              "UI/UX & Figma",
             ].map((item) => (
               <div
                 key={item}
                 style={{
                   padding: "8px 14px",
-                  borderRadius: "6px",
-                  background: "#1C1C1A",
-                  border: "1px solid #2E2E2A",
-                  color: "#F4F3EE",
+                  borderRadius: "8px",
+                  background: "#18181B",
+                  border: "1px solid #27272A",
+                  color: "#FAFAFA",
                   fontSize: "16px",
                 }}
               >
@@ -141,8 +149,8 @@ export function createOgImage() {
 
           <div
             style={{
-              fontSize: "17px",
-              color: "#D96B43",
+              fontSize: "18px",
+              color: "#2563EB",
               fontWeight: 600,
             }}
           >

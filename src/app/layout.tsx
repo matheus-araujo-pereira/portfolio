@@ -1,18 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import {
-  JetBrains_Mono,
-  Newsreader,
-  Plus_Jakarta_Sans,
-} from "next/font/google";
+import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
-
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -38,29 +27,29 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX Designer",
+      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX",
     template: "%s | Matheus Araujo Pereira",
   },
   description:
-    "Engenharia de software e design autoral em Aracaju, SE. Sistemas críticos em Java/Spring Boot, Angular e Next.js, liquidação tributária via PIX na SEMFAZ e produtos web sob medida.",
+    "Engenharia de software e produtos digitais sob medida em Aracaju, SE. Java, Spring Boot, Angular, Next.js, bancos relacionais e UI/UX Design.",
   keywords: [
     "Matheus Araujo Pereira",
     "Engenheiro de Software",
-    "Desenvolvedor Full Stack",
-    "Java 21",
+    "Software Engineer",
+    "Full Stack Developer",
+    "Java",
     "Spring Boot",
     "Angular",
     "Next.js",
     "TypeScript",
-    "UI/UX Designer",
-    "Design System",
+    "PostgreSQL",
+    "Oracle DB",
+    "UI/UX Design",
+    "Figma",
     "Aracaju",
     "Sergipe",
     "UFS",
     "SEMFAZ Aracaju",
-    "SIGEA",
-    "Thomas Clay",
-    "99Freelas",
   ],
   authors: [
     {
@@ -76,19 +65,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
+    alternateLocale: ["en_US"],
     url: "/",
-    siteName: "Matheus Araujo Pereira — Engenharia de Software & Design",
+    siteName: "Matheus Araujo Pereira",
     title:
-      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX Designer",
+      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX",
     description:
-      "Sistemas críticos e produtos digitais com rigor de engenharia e design autoral. Java/Spring Boot, Angular, Next.js, PostgreSQL, Oracle DB e Figma.",
+      "Engenharia de software e produtos digitais sob medida. Java, Spring Boot, Angular, Next.js, PIX tributário na SEMFAZ Aracaju e UI/UX Design.",
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX Designer",
+      "Matheus Araujo Pereira — Engenheiro de Software Full Stack & UI/UX",
     description:
-      "Sistemas críticos e produtos digitais com rigor de engenharia e design autoral. Disponível para projetos freelance e oportunidades em Engenharia de Software.",
+      "Software engineering and bespoke digital products. Java, Spring Boot, Angular, Next.js, PostgreSQL, Oracle DB & UI/UX Design.",
   },
   robots: {
     index: true,
@@ -106,18 +96,23 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#141413" },
-    { media: "(prefers-color-scheme: light)", color: "#F6F5F0" },
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090B" },
   ],
 };
 
-const themeInitScript = `
+const initScript = `
 (function() {
   try {
-    var stored = localStorage.getItem('theme');
-    var isDark = stored !== 'light';
+    var storedTheme = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var isDark = storedTheme === 'dark' || (!storedTheme && prefersDark);
     document.documentElement.classList.toggle('dark', isDark);
     document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+    var storedLang = localStorage.getItem('portfolio-lang');
+    if (storedLang === 'en') {
+      document.documentElement.lang = 'en';
+    }
   } catch (e) {}
 })();
 `;
@@ -127,13 +122,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={`dark ${newsreader.variable} ${plusJakartaSans.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: initScript }} />
       </head>
-      <body className="min-h-full flex flex-col bg-[#F6F5F0] text-[#141413] dark:bg-[#141413] dark:text-[#F4F3EE]">
-        {children}
+      <body className="min-h-full flex flex-col bg-[#FFFFFF] text-[#09090B] dark:bg-[#09090B] dark:text-[#FAFAFA]">
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

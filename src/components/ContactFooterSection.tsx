@@ -1,5 +1,12 @@
+"use client";
+
 import { ArrowUp, ArrowUpRight, Download, Mail } from "lucide-react";
-import { NAV_ITEMS, PROFILE } from "@/data/profile";
+import { useLanguage } from "@/context/LanguageContext";
+import {
+  PORTFOLIO_CONTENT,
+  PROFILE,
+  buildWhatsAppUrl,
+} from "@/data/profile";
 import {
   Freelas99Icon,
   GitHubIcon,
@@ -9,74 +16,70 @@ import {
 import { CopyEmailButton } from "@/components/CopyEmailButton";
 
 export function ContactFooterSection() {
+  const { locale } = useLanguage();
+  const content = PORTFOLIO_CONTENT[locale];
+  const whatsappUrl = buildWhatsAppUrl(content.whatsappDefaultMessage);
+
   return (
     <footer
       id="contato"
-      className="bg-[#ECEAE2]/50 pt-18 pb-12 sm:pt-24 dark:bg-[#171715]"
+      className="bg-[#F8FAFC] pt-16 pb-12 sm:pt-20 dark:bg-[#111114]"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        {/* Editorial Closing Statement */}
-        <div className="grid grid-cols-1 items-end gap-10 pb-16 lg:grid-cols-12">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-start gap-10 pb-14 lg:grid-cols-12">
+          {/* Left Call to Action */}
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 font-mono text-xs tracking-widest text-[#57564F] uppercase dark:text-[#9E9D96]">
-              <span
-                className="h-2 w-2 rounded-full bg-[#4ADE80]"
-                aria-hidden="true"
-              />
-              <span>05 / Contato Direto • {PROFILE.locationShort}</span>
-            </div>
-
-            <h2 className="mt-5 font-serif text-4xl leading-[1.06] font-normal tracking-[-0.03em] text-[#141413] sm:text-5xl lg:text-6xl dark:text-[#F4F3EE]">
-              Vamos tirar seu próximo sistema ou site do papel?
+            <p className="font-mono text-xs font-medium tracking-wider text-[#1D4ED8] uppercase dark:text-[#3B82F6]">
+              {content.footer.eyebrow}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#09090B] sm:text-4xl dark:text-[#FAFAFA]">
+              {content.footer.title}
             </h2>
-
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-[#57564F] sm:text-base dark:text-[#9E9D96]">
-              {PROFILE.status}. Envie uma mensagem direta com o contexto do seu
-              projeto ou vaga para alinharmos escopo, prazos e arquitetura.
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#52525B] dark:text-[#A1A1AA]">
+              {content.footer.subtitle}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
-                href={PROFILE.whatsappDefaultUrl}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#141413] px-5 py-3 text-sm font-medium text-[#F4F3EE] transition-colors hover:bg-[#232320] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:bg-[#F4F3EE] dark:text-[#141413] dark:hover:bg-[#E4E2D9] dark:focus-visible:outline-[#D96B43]"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#1D4ED8] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1E40AF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] sm:text-base dark:bg-[#3B82F6] dark:hover:bg-[#60A5FA] dark:focus-visible:outline-[#3B82F6]"
               >
                 <WhatsAppIcon className="h-4 w-4" />
-                <span>WhatsApp {PROFILE.whatsappDisplay}</span>
+                <span>
+                  {content.footer.whatsappCta} — {PROFILE.whatsappDisplay}
+                </span>
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
 
               <a
                 href={PROFILE.resumePath}
                 download
-                className="inline-flex items-center gap-2 rounded-md border border-[#DCD9CE] bg-[#FFFFFF] px-5 py-3 font-mono text-xs font-medium text-[#141413] transition-colors hover:border-[#141413] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C4552D] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE] dark:focus-visible:outline-[#D96B43]"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] px-5 py-3 text-sm font-semibold text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] sm:text-base dark:border-[#27272A] dark:bg-[#09090B] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6] dark:focus-visible:outline-[#3B82F6]"
               >
-                <Download className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>Baixar currículo (.pdf)</span>
+                <Download className="h-4 w-4" aria-hidden="true" />
+                <span>{content.footer.resumeCta}</span>
               </a>
             </div>
           </div>
 
           {/* Right Direct Channels */}
           <div className="space-y-3 lg:col-span-5">
-            <CopyEmailButton variant="row" className="w-full" />
+            <CopyEmailButton variant="card" />
 
             <a
               href={`mailto:${PROFILE.email}`}
-              className="flex items-center justify-between gap-3 rounded-md border border-[#DCD9CE] bg-[#FFFFFF] px-4 py-3 text-sm font-medium text-[#141413] transition-colors hover:border-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE]"
+              className="flex items-center justify-between gap-3 rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] px-4 py-3.5 text-sm font-medium text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] dark:border-[#27272A] dark:bg-[#09090B] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6]"
             >
               <span className="flex items-center gap-3">
                 <Mail
-                  className="h-4 w-4 text-[#57564F] dark:text-[#9E9D96]"
+                  className="h-4 w-4 text-[#52525B] dark:text-[#A1A1AA]"
                   aria-hidden="true"
                 />
-                <span>Abrir cliente de e-mail</span>
+                <span>{content.footer.openMailClient}</span>
               </span>
-              <ArrowUpRight
-                className="h-4 w-4 text-[#57564F] dark:text-[#9E9D96]"
-                aria-hidden="true"
-              />
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
 
             <div className="grid grid-cols-3 gap-2.5">
@@ -84,9 +87,9 @@ export function ContactFooterSection() {
                 href={PROFILE.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-md border border-[#DCD9CE] bg-[#FFFFFF] px-3 py-3 font-mono text-xs text-[#141413] transition-colors hover:border-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE]"
+                className="flex items-center justify-center gap-2 rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] px-3 py-3 text-sm font-medium text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] dark:border-[#27272A] dark:bg-[#09090B] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6]"
               >
-                <GitHubIcon className="h-3.5 w-3.5" />
+                <GitHubIcon className="h-4 w-4" />
                 <span>GitHub</span>
               </a>
 
@@ -94,9 +97,9 @@ export function ContactFooterSection() {
                 href={PROFILE.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-md border border-[#DCD9CE] bg-[#FFFFFF] px-3 py-3 font-mono text-xs text-[#141413] transition-colors hover:border-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE]"
+                className="flex items-center justify-center gap-2 rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] px-3 py-3 text-sm font-medium text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] dark:border-[#27272A] dark:bg-[#09090B] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6]"
               >
-                <LinkedInIcon className="h-3.5 w-3.5" />
+                <LinkedInIcon className="h-4 w-4" />
                 <span>LinkedIn</span>
               </a>
 
@@ -104,7 +107,7 @@ export function ContactFooterSection() {
                 href={PROFILE.freelasUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1.5 rounded-md border border-[#DCD9CE] bg-[#FFFFFF] px-3 py-3 font-mono text-xs text-[#141413] transition-colors hover:border-[#141413] dark:border-[#2E2E2A] dark:bg-[#1C1C1A] dark:text-[#F4F3EE] dark:hover:border-[#F4F3EE]"
+                className="flex items-center justify-center gap-1.5 rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] px-3 py-3 text-sm font-medium text-[#09090B] transition-colors hover:border-[#1D4ED8] hover:text-[#1D4ED8] dark:border-[#27272A] dark:bg-[#09090B] dark:text-[#FAFAFA] dark:hover:border-[#3B82F6] dark:hover:text-[#3B82F6]"
               >
                 <Freelas99Icon className="h-4 w-4" />
                 <span>99Freelas</span>
@@ -113,27 +116,28 @@ export function ContactFooterSection() {
           </div>
         </div>
 
-        {/* Colophon Bar */}
-        <div className="flex flex-col items-start justify-between gap-6 border-t border-[#DCD9CE] pt-8 md:flex-row md:items-center dark:border-[#2E2E2A]">
-          <div className="flex items-baseline gap-3">
-            <span className="font-serif text-xl font-medium text-[#141413] dark:text-[#F4F3EE]">
-              {PROFILE.monogram}
-              <span className="text-[#C4552D] dark:text-[#D96B43]">.</span>
-            </span>
-            <span className="font-mono text-xs text-[#57564F] dark:text-[#9E9D96]">
-              {PROFILE.name} — {PROFILE.location}
-            </span>
+        {/* Bottom Colophon */}
+        <div className="flex flex-col items-start justify-between gap-4 border-t border-[#E4E4E7] pt-8 md:flex-row md:items-center dark:border-[#27272A]">
+          <div>
+            <p className="text-sm font-bold text-[#09090B] dark:text-[#FAFAFA]">
+              {PROFILE.name}
+            </p>
+            <p className="mt-0.5 text-xs text-[#52525B] dark:text-[#A1A1AA]">
+              © 2026 {PROFILE.name}. {content.footer.rights}
+            </p>
           </div>
 
           <nav
-            aria-label="Navegação do rodapé"
-            className="flex flex-wrap items-center gap-x-6 gap-y-2"
+            aria-label={
+              locale === "en" ? "Footer navigation" : "Navegação do rodapé"
+            }
+            className="flex flex-wrap items-center gap-x-5 gap-y-2"
           >
-            {NAV_ITEMS.map((item) => (
+            {content.nav.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
-                className="text-xs font-medium text-[#57564F] transition-colors hover:text-[#141413] dark:text-[#9E9D96] dark:hover:text-[#F4F3EE]"
+                className="text-xs font-medium text-[#52525B] transition-colors hover:text-[#1D4ED8] dark:text-[#A1A1AA] dark:hover:text-[#3B82F6]"
               >
                 {item.label}
               </a>
@@ -142,17 +146,11 @@ export function ContactFooterSection() {
 
           <a
             href="#inicio"
-            aria-label="Voltar ao topo"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-[#57564F] transition-colors hover:text-[#141413] dark:text-[#9E9D96] dark:hover:text-[#F4F3EE]"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-[#52525B] transition-colors hover:text-[#1D4ED8] dark:text-[#A1A1AA] dark:hover:text-[#3B82F6]"
           >
-            <span>Topo</span>
+            <span>{content.footer.backToTop}</span>
             <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
           </a>
-        </div>
-
-        <div className="mt-6 flex flex-col justify-between gap-2 font-mono text-[11px] text-[#57564F] sm:flex-row dark:text-[#9E9D96]">
-          <p>© 2026 {PROFILE.name}. Todos os direitos reservados.</p>
-          <p>Next.js • TypeScript • Tailwind CSS</p>
         </div>
       </div>
     </footer>
